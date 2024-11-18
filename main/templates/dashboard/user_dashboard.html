@@ -1,45 +1,92 @@
 {% block content %}
-<div class="header">
-    <div class="logo">MyWebsite</div>
-    <nav class="nav-menu">
-        <a href="{% url 'profile' %}">Profile</a>
-        <a href="{% url 'appointments' %}">Appointments</a>
-        <a href="{% url 'vehicle_list' %}">Vehicles</a>
-        <a href="{% url 'article_list' %}">Articles</a>
-        <a href="{% url 'logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-    </nav>
-</div>
+{% include 'components/header.html' %}
 
 <div class="dashboard-container">
     {% if user.is_authenticated %}
-        <p class="welcome-message">Welcome back, <strong>{{ user.username }}</strong>!</p>
-
-        <div class="dashboard-content">
-            <div class="dashboard-item">
-                <a href="{% url 'profile' %}" class="item-link">Manage Profile</a>
-            </div>
-            <div class="dashboard-item">
-                <a href="{% url 'appointments' %}" class="item-link">Manage Appointments</a>
-            </div>
-            <div class="dashboard-item">
-                <a href="{% url 'vehicle_list' %}" class="item-link">Manage Vehicles</a>
-            </div>
-            <div class="dashboard-item">
-                <a href="{% url 'article_list' %}" class="item-link">Maintenance Articles</a>
+    <header class="header-container">
+        <div class="container">
+            <div class="header-content">
+                <div class="text-content">
+                    <h1>PHẦN MỀM QUẢN LÝ GARA ĐẶT LỊCH BẢO DƯỠNG</h1>
+                    <p class="subtitle">Nhanh Chóng, An Toàn, Hiệu Quả.</p>
+                    <p>
+                        Cung cấp giải pháp tối ưu hóa thông tin và tình trạng xe bằng cách cập nhật liên tục từ các nguồn dữ liệu. 
+                        Giúp thợ sửa chữa đưa ra giải pháp nhanh chóng và chính xác. Phần mềm hoạt động 24/7, hỗ trợ giám sát công việc 
+                        hằng ngày hiệu quả, mọi lúc mọi nơi, không giới hạn số lượng tài khoản phân quyền.
+                    </p>
+                    <div class="buttons">
+                        <a href="{% url 'appointments' %}" class="btn btn-red">Appointments</a>
+                        <a href="{% url 'article_list' %}" class="btn btn-green">Articles</a>
+                    </div>
+                </div>
+                <div class="image-content">
+                    <img src="https://datlichbaoduong.com/wp-content/uploads/2020/09/x%E1%BB%AD-l%C3%BD-n%C6%B0%E1%BB%9Bc-th%E1%BA%A3i-gara-s%E1%BB%AFa-ch%E1%BB%AFa-%C3%B4-t%C3%B4-1201x800.jpg" alt="Garage">
+                </div>
             </div>
         </div>
-
-        <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
-            {% csrf_token %}
-        </form>
+    </header>
+    
+    <section class="experience">
+        <div class="container">
+            <h2>Kinh nghiệm thực tiễn</h2>
+            <p class="experience-description">
+                Triển khai chuyển đổi trên 300 doanh nghiệp trên cả nước về lĩnh vực ô tô và phụ trợ. 
+                Với những kinh nghiệm thực tiễn, chúng tôi sẽ mang đến những giải pháp cần thiết nhất cho bạn.
+            </p>
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://datlichbaoduong.com/wp-content/uploads/2020/06/2418778-599x400.jpg" alt="Đội ngũ chuyên nghiệp" class="card-image">
+                    <h3 class="card-title">ĐỘI NGŨ CHUYÊN NGHIỆP</h3>
+                    <p class="card-text">
+                        Với phương châm sáng tạo đột phá, Đặt Lịch Bảo Dưỡng liên tục cải tiến để phát triển phần mềm phù hợp 
+                        với nhu cầu sử dụng của các garage.
+                    </p>
+                </div>
+                <div class="card">
+                    <img src="https://datlichbaoduong.com/wp-content/uploads/2020/06/504523-PHS4PO-673-600x400.jpg" alt="Tính năng vượt trội" class="card-image">
+                    <h3 class="card-title">TÍNH NĂNG VƯỢT TRỘI</h3>
+                    <p class="card-text">
+                        Những chức năng ưu việt đều được tích hợp trong phần mềm, có tính liên kết chặt chẽ giữa các phòng ban, 
+                        hỗ trợ công việc tốt hơn.
+                    </p>
+                </div>
+                <div class="card">
+                    <img src="https://datlichbaoduong.com/wp-content/uploads/2020/06/c%E1%BB%91-v%E1%BA%A5n-d%E1%BB%8Bch-v%E1%BB%A5-600x400.jpg" alt="Giải pháp an toàn" class="card-image">
+                    <h3 class="card-title">GIẢI PHÁP AN TOÀN</h3>
+                    <p class="card-text">
+                        Phần mềm Đặt Lịch Bảo Dưỡng áp dụng công nghệ lưu trữ CDN hiện đại nhằm tối ưu hóa mọi chức năng 
+                        nhưng vẫn bảo mật dữ liệu một cách tuyệt đối.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
     {% else %}
         <p class="login-prompt">You are not logged in. Please <a href="{% url 'login' %}">log in</a> to access your dashboard.</p>
     {% endif %}
 </div>
 
-<button class="message-button" onclick="window.location.href='{% url 'chat_view' user.id %}'">
-    💬
-</button>
+
+<div class="chat-widget">
+    <button id="chat-toggle" class="chat-button">
+        💬
+    </button>
+    <div id="chat-box" class="chat-box">
+        <div class="chat-header">
+            <h3>Chat with us</h3>
+            <button id="close-chat" class="close-button">&times;</button>
+        </div>
+        <div class="chat-messages">
+            <p class="message bot">Hello! How can I assist you?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chat-input-field" placeholder="Type your message...">
+            <button id="send-message">Send</button>
+        </div>
+    </div>
+</div>
 
 <style>
     /* Global Styles */
@@ -51,14 +98,7 @@
     }
 
     /* Header and Menu */
-    .header {
-        background-color: #4CAF50;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 20px;
-        align-items: center;
-    }
+  
     .logo {
         font-size: 1.5em;
         font-weight: bold;
@@ -79,7 +119,7 @@
         background-color: #ffffff;
         padding: 30px;
         margin: 20px auto;
-        max-width: 800px;
+        max-width: 1000px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         text-align: center;
@@ -139,6 +179,256 @@
     .login-prompt {
         font-size: 1.1em;
     }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        line-height: 1.6;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .header-container {
+        background-color: #009688;
+        color: white;
+        padding: 40px 20px;
+    }
+    
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .text-content {
+        max-width: 60%;
+    }
+    
+    .text-content h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .text-content .subtitle {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    
+    .text-content p {
+        margin: 10px 0;
+    }
+    
+    .buttons {
+        margin-top: 20px;
+    }
+    
+    .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        margin: 5px;
+    }
+    
+    .btn-red {
+        background-color: #d32f2f;
+    }
+    
+    .btn-green {
+        background-color: #388e3c;
+    }
+    
+    .image-content img {
+        max-width: 300px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    
+    .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        margin: 5px;
+    }
+    
+    .btn-red {
+        background-color: #d32f2f;
+    }
+    
+    .btn-green {
+        background-color: #388e3c;
+    }
+    
+   
+    .experience {
+        padding: 40px 20px;
+        background-color: #f5f5f5;
+    }
+    
+    .experience h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .experience .image-gallery {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    
+    .experience .image-gallery img {
+        width: 30%;
+        border-radius: 5px;
+    }
+    
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 250px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+    
+    .card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .card-image {
+        width: 100%;
+        height: 150px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        object-fit: cover;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+        color: #333;
+        margin: 10px 0;
+        padding: 0 10px;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+        color: #555;
+        padding: 0 10px 20px 10px;
+        text-align: left;
+    }
+    .chat-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    
+    .chat-button {
+        width: 60px;
+        height: 60px;
+        background-color: #28a745;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .chat-button img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .chat-box {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 300px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+        flex-direction: column;
+        max-height: 50%; /* Giới hạn khung chat chiếm tối đa 80% chiều cao màn hình */
+        overflow: hidden;
+    }
+    
+    .chat-header {
+        background: #28a745;
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .chat-header h3 {
+        margin: 0;
+    }
+    
+    .close-button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    .chat-messages {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto; /* Kích hoạt cuộn dọc */
+        height: 300px; /* Chiều cao cố định */
+        background: #f9f9f9;
+        border-bottom: 1px solid #ddd; /* Đường viền dưới để phân cách */
+    }
+    
+    .chat-input {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background: #fff;
+    }
+    
+    .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .chat-input button {
+        padding: 10px 15px;
+        margin-left: 10px;
+        background: #28a745;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
 </style>
 
 <script>
@@ -148,5 +438,77 @@
             event.preventDefault();
         }
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const chatToggle = document.getElementById("chat-toggle");
+        const chatBox = document.getElementById("chat-box");
+        const closeChat = document.getElementById("close-chat");
+        const sendMessage = document.getElementById("send-message");
+        const chatInputField = document.getElementById("chat-input-field");
+        const chatMessages = document.querySelector(".chat-messages");
+    
+        // Danh sách các câu trả lời mẫu
+        const assistantResponses = {
+            "hello": "Hi! How can I assist you today?",
+            "appointments": "You can manage your appointments by clicking the 'Appointments' button above.",
+            "articles": "Browse our articles for the latest updates and tips.",
+            "help": "I'm here to assist you with any questions about our service!",
+            "default": "Sorry, I didn't understand that. Can you rephrase your question?"
+        };
+    
+        // Hàm xử lý tin nhắn người dùng
+        function handleUserMessage(message) {
+            const lowerCaseMessage = message.toLowerCase();
+    
+            // Lấy câu trả lời tương ứng
+            const response = assistantResponses[lowerCaseMessage] || assistantResponses["default"];
+    
+            // Hiển thị tin nhắn trả lời
+            const botMessage = document.createElement("p");
+            botMessage.classList.add("message", "bot");
+            botMessage.textContent = response;
+            chatMessages.appendChild(botMessage);
+    
+            // Cuộn xuống cuối cùng
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    
+        // Toggle chat box
+        chatToggle.addEventListener("click", () => {
+            chatBox.style.display = "flex";
+        });
+    
+        // Close chat box
+        closeChat.addEventListener("click", () => {
+            chatBox.style.display = "none";
+        });
+    
+        // Send message
+        sendMessage.addEventListener("click", () => {
+            const userMessage = chatInputField.value.trim();
+            if (userMessage !== "") {
+                // Hiển thị tin nhắn người dùng
+                const messageElement = document.createElement("p");
+                messageElement.classList.add("message", "user");
+                messageElement.textContent = userMessage;
+                chatMessages.appendChild(messageElement);
+    
+                // Xử lý tin nhắn và trả lời
+                handleUserMessage(userMessage);
+    
+                // Xóa nội dung nhập
+                chatInputField.value = "";
+            }
+        });
+    
+        // Gửi tin nhắn bằng phím Enter
+        chatInputField.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                sendMessage.click();
+            }
+        });
+    });
+    
+    
 </script>
 {% endblock %}

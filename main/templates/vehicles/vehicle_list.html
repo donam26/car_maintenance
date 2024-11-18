@@ -85,13 +85,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Vehicle List</h1>
-    </header>
-
-    <div class="back-button">
-        <a href="{% url 'user_dashboard' %}">Back to Dashboard</a>
-    </div>
+    {% include 'components/header.html' %}
 
     <div class="vehicle-list">
         <a href="{% url 'vehicle_create' %}" class="btn btn-primary">Add New Vehicle</a>
@@ -124,8 +118,5 @@
         </table>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Vehicle Management</p>
-    </footer>
 </body>
 </html>
