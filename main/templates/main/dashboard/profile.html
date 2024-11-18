@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-control {
+      margin-bottom: 15px;
+    }
+    .form-control label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .form-control input {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .back-button {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .back-button a {
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 10px 20px;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .back-button a:hover {
+      background-color: #ddd;
+    }
+    .alert {
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      background-color: #4CAF50;
+      color: white;
+      position: relative;
+    }
+    .alert .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .alert .close-btn:hover {
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert">
+          {{ message }}
+          <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+      {% endfor %}
+    {% endif %}
+    <h2>Personal Information</h2>
+    <form method="post" action="{% url 'profile' %}">
+      {% csrf_token %}
+      {{ user_form.as_p }}
+      <button type="submit">Save Changes</button>
+    </form>
+
+    <div class="back-button">
+      <a href="{% url 'user_dashboard' %}">Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

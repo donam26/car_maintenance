@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repair Request Details</title>
+</head>
+<body>
+    <h1>Repair Request Details</h1>
+    <p><strong>Status:</strong> {{ repair_request.status }}</p>
+    <p><strong>Description:</strong> {{ repair_request.description }}</p>
+    <p><strong>Assigned To:</strong> {{ repair_request.assigned_to }}</p>
+    <p><strong>Estimated Completion Date:</strong> {{ repair_request.estimated_completion_date }}</p>
+    <a href="{% url 'repair_request_update' repair_request.pk %}">Edit</a>
+    <a href="{% url 'admin_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

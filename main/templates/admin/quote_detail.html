@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quote Details</title>
+</head>
+<body>
+    <h1>Quote Details</h1>
+    <p><strong>Description:</strong> {{ quote.description }}</p>
+    <p><strong>Estimated Cost:</strong> {{ quote.estimated_cost }}</p>
+    <p><strong>Status:</strong> {{ quote.status }}</p>
+    <a href="{% url 'quote_update' quote.pk %}">Edit</a>
+    <a href="{% url 'admin_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with {{ receiver.username }}</title>
+    <style>
+        /* Your CSS from the previous answer or any custom styles */
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat with {{ receiver.username }}</h2>
+        </div>
+
+        <div class="message-list" id="message-list">
+            {% for message in messages %}
+                <div class="message {% if message.sender == user %}outgoing{% else %}incoming{% endif %}">
+                    <p class="sender">{{ message.sender.username }}</p>
+                    <p class="content">{{ message.content }}</p>
+                    <p class="timestamp">{{ message.sent_at }}</p>
+                </div>
+            {% empty %}
+                <p class="empty-message">No messages found.</p>
+            {% endfor %}
+        </div>
+
+        <div class="chat-footer">
+            <textarea id="new-message" rows="3" placeholder="Type a message..." style="width: 100%;"></textarea>
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Scroll to bottom on page load (for new messages)
+        document.addEventListener("DOMContentLoaded", function() {
+            const messageList = document.getElementById('message-list');
+            messageList.scrollTop = messageList.scrollHeight;
+        });
+
+        // Send new message via AJAX
+        document.getElementById('send-button').addEventListener('click', function() {
+            const content = document.getElementById('new-message').value;
+            if (content.trim() !== '') {
+                fetch("{% url 'send_message' receiver.id %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `content=${encodeURIComponent(content)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert('Error: ' + data.error);
+                    } else {
+                        const messageElement = document.createElement('div');
+                        messageElement.classList.add('message', 'outgoing');
+                        messageElement.innerHTML = `
+                            <p class="sender">You</p>
+                            <p class="content">${data.content}</p>
+                            <p class="timestamp">${data.sent_at}</p>
+                        `;
+                        document.getElementById('message-list').appendChild(messageElement);
+                        document.getElementById('new-message').value = ''; // Clear input
+                        messageElement.scrollIntoView({ behavior: 'smooth' }); // Scroll to bottom
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

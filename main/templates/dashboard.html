@@ -1,0 +1,26 @@
+<h2>Dashboard</h2>
+<p>Welcome, {{ request.user.username }}!</p>
+
+<h3>Your Cars</h3>
+<ul>
+    {% for car in cars %}
+        <li>{{ car.brand }} - {{ car.license_plate }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_car' %}">Add New Car</a>
+
+<h3>Your Requests</h3>
+<ul>
+    {% for req in requests %}
+        <li>{{ req.description }} - {{ req.status }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_request' %}">Add New Request</a>
+
+<h3>Appointments</h3>
+<ul>
+    {% for appointment in appointments %}
+        <li>{{ appointment.date }} at {{ appointment.location }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_appointment' %}">Add New Appointment</a>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Details</title>
+</head>
+<body>
+    <h1>Vehicle Details</h1>
+    <p><strong>Make:</strong> {{ vehicle.make }}</p>
+    <p><strong>Model:</strong> {{ vehicle.model }}</p>
+    <p><strong>Year:</strong> {{ vehicle.year }}</p>
+    <p><strong>VIN:</strong> {{ vehicle.vin }}</p>
+    <p><strong>Last Maintenance Date:</strong> {{ vehicle.last_maintenance_date }}</p>
+    <a href="{% url 'vehicle_update' vehicle.pk %}">Edit</a>
+    <a href="{% url 'admin_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

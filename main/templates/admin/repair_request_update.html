@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Repair Request</title>
+</head>
+<body>
+    <h1>Update Repair Request</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="{% url 'repair_request_detail' repair_request.pk %}">Cancel</a>
+</body>
+</html>

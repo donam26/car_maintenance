@@ -1,0 +1,28 @@
+<!-- message_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Messages</h1>
+    <div class="message-list">
+        {% for message in messages %}
+            <div class="message">
+                <p><strong>From:</strong> {{ message.sender.username }}</p>
+                <p><strong>To:</strong> {{ message.receiver.username }}</p>
+                <p><strong>Content:</strong> {{ message.content }}</p>
+                <p><strong>Sent At:</strong> {{ message.sent_at }}</p>
+            </div>
+        {% empty %}
+            <p>No messages found.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
