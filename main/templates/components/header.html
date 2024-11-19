@@ -7,13 +7,35 @@
         <a href="{% url 'appointments' %}">Appointments</a>
         <a href="{% url 'vehicle_list' %}">Vehicles</a>
         <a href="{% url 'article_list' %}">Articles</a>
-        <a href="{% url 'logout' %}" onclick=" document.getElementById('logout-form').submit();">Logout</a>
+        {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    {% endif %}
+    
+        
     </nav>
 </div>
 
 
 <style>
     /* Global Styles */
+    .logout-button {
+    background: none; /* Loại bỏ màu nền */
+    color: white; /* Màu chữ giống các link khác */
+    border: none; /* Loại bỏ viền */
+    font-size: 1em; /* Kích thước chữ giống link */
+    cursor: pointer; /* Con trỏ giống khi hover link */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    margin: 0 10px; /* Căn chỉnh khoảng cách giữa các link */
+    transition: color 0.3s ease;
+}
+
+.logout-button:hover {
+    color: #ffecb3; /* Màu chữ khi hover */
+}
+
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f7fc;

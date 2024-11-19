@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard with Chat</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f4f4f9;
+            padding-bottom: 10px;
+        }
+        .logout-button {
+            padding: 8px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-button:hover {
+            background-color: #d32f2f;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .add-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .add-button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f8f8f8;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .actions a {
+            margin: 0 10px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .actions a:hover {
+            color: #388e3c;
+        }
+        /* Style for the message button */
+        .message-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .message-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user-info">
+            <h1>Admin Dashboard</h1>
+            <div>
+                <span>Welcome, {{ user.username }}</span>
+                <a href="{% url 'logout' %}">
+                    <button class="logout-button">Logout</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Repair Requests</h2>
+            <a href="{% url 'repair_request_add' %}" class="add-button">Add Repair Request</a>
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Vehicle</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                {% for request in repair_requests %}
+                    <tr>
+                        <td>{{ request.user.username }}</td>
+                        <td>{{ request.vehicle.make }} {{ request.vehicle.model }}</td>
+                        <td>{{ request.get_status_display }}</td>
+                        <td class="actions">
+                            <a href="{% url 'repair_request_detail' request.id %}">View</a> |
+                            <a href="{% url 'repair_request_update' request.id %}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Appointments</h2>
+            <a href="{% url 'appointment_add' %}" class="add-button">Add Appointment</a>
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.user.username }}</td>
+                        <td>{{ appointment.date }}</td>
+                        <td>{{ appointment.description }}</td>
+                        <td class="actions">
+                            <a href="{% url 'appointment_detail' appointment.id %}">View</a> |
+                            <a href="{% url 'appointment_update' appointment.id %}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Quotes</h2>
+            <a href="{% url 'quote_add' %}" class="add-button">Add Quote</a>
+            <table>
+                <tr>
+                    <th>Repair Request</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+                {% for quote in quotes %}
+                    <tr>
+                        <td>{{ quote.repair_request.description }}</td>
+                        <td>{{ quote.price }}</td>
+                        <td class="actions">
+                            <a href="{% url 'quote_detail' quote.id %}">View</a> |
+                            <a href="{% url 'quote_update' quote.id %}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Vehicles</h2>
+            <a href="{% url 'vehicle_add' %}" class="add-button">Add Vehicle</a>
+            <table>
+                <tr>
+                    <th>Owner</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Actions</th>
+                </tr>
+                {% for vehicle in vehicles %}
+                    <tr>
+                        <td>{{ vehicle.user.username }}</td>
+                        <td>{{ vehicle.make }}</td>
+                        <td>{{ vehicle.model }}</td>
+                        <td>{{ vehicle.year }}</td>
+                        <td class="actions">
+                            <a href="{% url 'vehicle_detail' vehicle.id %}">View</a> |
+                            <a href="{% url 'vehicle_update' vehicle.id %}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Maintenance Articles</h2>
+            <a href="{% url 'article_add' %}" class="add-button">Add Article</a>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.category }}</td>
+                        <td class="actions">
+                            <a href="{% url 'article_detail' article.id %}">View</a> |
+                            <a href="{% url 'article_update' article.id %}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <!-- Message Button -->
+    <button class="message-button" onclick="window.location.href='{% url 'chat_view' user.id %}'">
+        💬
+    </button>
+</body>
+</html>

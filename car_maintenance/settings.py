@@ -116,7 +116,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 # Default primary key field type
@@ -127,3 +126,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'user_dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 AUTH_USER_MODEL = 'main.User'
+LOGIN_URL = '/login/'
+# settings.py
+LOGOUT_REDIRECT_URL = '/login/'  # Sau khi logout, chuyển hướng tới trang login
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]

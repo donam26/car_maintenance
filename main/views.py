@@ -3,11 +3,12 @@
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.db import models
 from django.http import JsonResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.db.models import Count, Sum
 
 from .forms import LoginForm, RegistrationForm, UserProfileForm, VehicleForm, MaintenanceArticleForm, QuoteForm, \
     AppointmentForm, RepairRequestForm
@@ -148,21 +149,19 @@ def vehicle_delete(request, pk):
 
 @login_required
 def admin_dashboard(request):
-    repair_requests = RepairRequest.objects.all()
-    appointments = Appointment.objects.all()
-    quotes = Quote.objects.all()
-    vehicles = Vehicle.objects.all()
-    articles = MaintenanceArticle.objects.all()
-    users = User.objects.all()
-    context = {
-        'repair_requests': repair_requests,
-        'appointments': appointments,
-        'quotes': quotes,
-        'vehicles': vehicles,
-        'articles': articles,
-        'users': users
-    }
-    return render(request, 'dashboard/admin_dashboard.html', context)
+    from datetime import datetime
+    now = datetime.now()
+    monthly_repairs = RepairRequest.objects.filter(
+        created_at__year=now.year, created_at__month=now.month
+    )
+
+    # Aggregate data for analysis
+    report_data = monthly_repairs.values('user__username').annotate(
+        total_repairs=Count('id'),
+        total_cost=Sum('cost'),  # Assuming there is a 'cost' field in RepairRequest
+    ).order_by('-total_repairs')
+
+    return render(request, 'dashboard/admin_dashboard.html', {'report_data': report_data, 'month': now.strftime('%B %Y')})
 
 
 @login_required
@@ -416,3 +415,111 @@ def appointment_add_user(request):
         form = AppointmentForm()
 
     return render(request, 'main/dashboard/add-appointment.html', {'form': form})
+
+
+def repair_requests(request):
+    repair_requests = RepairRequest.objects.all()  # Fetch all repair requests
+    return render(request, 'dashboard/repair_requests.html', {'repair_requests': repair_requests})
+
+def appointments(request):
+    # Fetch appointments data from the database
+    appointments = []  # Replace with actual query
+    return render(request, 'dashboard/appointments.html', {'appointments': appointments})
+
+def quotes(request):
+    # Fetch quotes data from the database
+    quotes = []  # Replace with actual query
+    return render(request, 'dashboard/quotes.html', {'quotes': quotes})
+
+def vehicles(request):
+    vehicle_list = Vehicle.objects.all()
+    return render(request, 'dashboard/vehicles.html', {'vehicle_list': vehicle_list})
+
+def maintenance_articles(request):
+    # Fetch maintenance articles data from the database
+    articles = []  # Replace with actual query
+    return render(request, 'dashboard/maintenance_articles.html', {'articles': articles})
+
+def edit_repair_request(request):
+    if request.method == 'POST':
+        request_id = request.POST.get('id')
+        vehicle = request.POST.get('vehicle')
+        status = request.POST.get('status')
+        repair_request = get_object_or_404(RepairRequest, id=request_id)
+        repair_request.vehicle.make = vehicle
+        repair_request.status = status
+        repair_request.save()
+        return redirect('repair_requests')
+
+def delete_repair_request(request):
+    if request.method == 'POST':
+        request_id = request.POST.get('id')
+        repair_request = get_object_or_404(RepairRequest, id=request_id)
+        repair_request.delete()
+        return redirect('repair_requests')
+
+def edit_vehicle(request, vehicle_id):
+    vehicle = get_object_or_404(Vehicle, id=vehicle_id)  # Fetch the vehicle object by ID
+    
+    if request.method == 'POST':
+        vehicle.make = request.POST.get('make')
+        vehicle.model = request.POST.get('model')
+        vehicle.year = request.POST.get('year')
+        vehicle.vin = request.POST.get('vin')
+        vehicle.color = request.POST.get('color')
+        vehicle.vin = request.POST.get('vin')  
+        vehicle.license_plate = request.POST.get('license_plate')
+        vehicle.last_maintenance = request.POST.get('last_maintenance')
+        vehicle.color = request.POST.get('color')  # Save the color field
+        vehicle.save()
+        
+        return redirect('vehicles')  # Redirect to the vehicles list after saving changes
+
+    return render(request, 'dashboard/edit_vehicle.html', {'vehicle': vehicle})
+
+
+# View for deleting vehicle
+def delete_vehicle(request, vehicle_id):
+    vehicle = get_object_or_404(Vehicle, id=vehicle_id)  # Fetch the vehicle object by ID
+    vehicle.delete()  # Delete the vehicle
+    return redirect('vehicles') 
+
+
+def edit_appointment(request, appointment_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+    if request.method == 'POST':
+        appointment_date = request.POST.get('appointment_date')
+        status = request.POST.get('status')
+        # Update the fields
+        appointment.appointment_date = appointment_date
+        appointment.status = status
+        appointment.save()
+        return redirect('appointments')  # Redirect to the appointments list
+
+    # Render the edit form with current appointment data
+    return render(request, 'dashboard/edit_appointment.html', {'appointment': appointment})
+
+# View for deleting an appointment
+
+def delete_appointment(request, appointment_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+    if request.method == 'POST':
+        appointment.delete()
+        return redirect('appointments')
+
+
+def edit_quote(request, quote_id):
+    quote = get_object_or_404(Quote, id=quote_id)
+    if request.method == 'POST':
+        quote.price = request.POST.get('price')
+        quote.details = request.POST.get('details')
+        quote.sent_to_user = request.POST.get('sent_to_user') == 'on'
+        quote.save()
+        return redirect('quotes')
+    return render(request, 'dashboard/edit_quote.html', {'quote': quote})
+
+def delete_quote(request, quote_id):
+    quote = get_object_or_404(Quote, id=quote_id)
+    if request.method == 'POST':
+        quote.delete()
+        return redirect('quotes')

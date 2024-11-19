@@ -6,7 +6,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('register/', views.register_view, name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('user_dashboard/', views.user_dashboard, name='user_dashboard'),
+    path('', views.user_dashboard, name='user_dashboard'),
     path('profile/', views.profile_view, name='profile'),
     path('appointments/', views.appointments_view, name='appointments'),
     path('vehicles/', views.vehicle_list, name='vehicle_list'),
@@ -15,6 +15,11 @@ urlpatterns = [
     path('vehicles/delete/<int:pk>/', views.vehicle_delete, name='vehicle_delete'),
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
 
+    path('admin-repair-requests/', views.repair_requests, name='admin_repair_requests'),
+    path('admin-appointments/', views.appointments, name='admin_appointments'),
+    path('admin-quotes/', views.quotes, name='admin_quotes'),
+    path('admin-vehicles/', views.vehicles, name='admin_vehicles'),
+    path('admin-maintenance-articles/', views.maintenance_articles, name='admin_maintenance_articles'),
     # Repair Requests
     path('repair-request/<int:pk>/', views.repair_request_detail, name='repair_request_detail'),
     path('repair-request/update/<int:pk>/', views.repair_request_update, name='repair_request_update'),
@@ -42,4 +47,17 @@ urlpatterns = [
     path('article/deatials/<int:pk>/', views.article_detail_user, name='article_detail_user'),
     path('add-appointment/', views.appointment_add_user, name='add_appointment_user'),
 
+
+# gd3
+    path('repair-request/edit/', views.edit_repair_request, name='repair_request_edit'),
+    path('repair-request/delete/', views.delete_repair_request, name='repair_request_delete'),
+
+    path('vehicles/edit/<int:vehicle_id>/', views.edit_vehicle, name='edit_vehicle'),
+    path('vehicles/delete/<int:vehicle_id>/', views.delete_vehicle, name='delete_vehicle'),
+
+    path('appointments/edit/<int:appointment_id>/', views.edit_appointment, name='edit_appointment'),
+    path('appointments/delete/<int:appointment_id>/', views.delete_appointment, name='delete_appointment'),
+
+    path('quotes/edit/<int:quote_id>/', views.edit_quote, name='edit_quote'),
+    path('quotes/delete/<int:quote_id>/', views.delete_quote, name='delete_quote'),
 ]
