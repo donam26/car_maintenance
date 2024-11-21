@@ -76,6 +76,7 @@ def profile_view(request):
 def appointments_view(request):
     user = request.user
     appointments = Appointment.objects.filter(user=user).order_by('appointment_date')
+    vehicles = Vehicle.objects.filter(user=user)
 
     if request.method == 'POST':
         appointment_id = request.POST.get('appointment_id')
@@ -97,7 +98,7 @@ def appointments_view(request):
             messages.error(request, "Appointment not found.")
             return redirect('appointments')
 
-    return render(request, 'main/dashboard/appointments.html', {'appointments': appointments})
+    return render(request, 'main/dashboard/appointments.html', {'appointments': appointments,'vehicles': vehicles,})
 
 
 @login_required
@@ -264,15 +265,39 @@ def article_update(request, pk):
     return render(request, 'admin/article_update.html', {'form': form})
 
 
+def repair_request_add_user(request):
+    if request.method == 'POST':
+        vehicle_id = request.POST.get('vehicle_id')
+        description = request.POST.get('description')
+        try:
+            vehicle = Vehicle.objects.get(id=vehicle_id, user=request.user)
+            repair_request = RepairRequest.objects.create(
+                vehicle=vehicle,
+                description=description,
+                user=request.user
+            )
+            messages.success(request, "Repair request added successfully,Please wait for us to schedule an appointment!")
+        except Vehicle.DoesNotExist:
+            messages.error(request, "Invalid vehicle.")
+        return redirect('appointments') 
+    return redirect('appointments') 
+
 @login_required
 def repair_request_add(request):
     if request.method == 'POST':
-        form = RepairRequestForm(request.POST)
+        repair_request_id = request.POST.get('repair_request_id')
+        repair_request = get_object_or_404(RepairRequest, id=repair_request_id)
+        form = AppointmentForm(request.POST)
         if form.is_valid():
-            repair_request = form.save(commit=False)
-            repair_request.user = request.user  # Optionally assign the user
-            repair_request.save()
-            return redirect('admin_dashboard')  # Redirect after successful form submission
+            appointment = form.save(commit=False)
+            appointment.repair_request = repair_request
+            appointment.user = request.user
+            appointment.status = 'Pending'
+            appointment.save()
+            messages.success(request, "Appointment created successfully!")
+            return redirect('repair_requests')  # Redirect to repair requests page
+        else:
+            messages.error(request, "Failed to create appointment. Please correct the errors.")
     else:
         form = RepairRequestForm()
     return render(request, 'admin/repair_request_add.html', {'form': form})
@@ -315,7 +340,7 @@ def vehicle_add(request):
         if form.is_valid():
             vehicle = form.save(commit=False)
             vehicle.save()
-            return redirect('admin_dashboard')
+            return redirect('admin_vehicles')
     else:
         form = VehicleForm()
     return render(request, 'admin/vehicle_add.html', {'form': form})
@@ -329,7 +354,7 @@ def article_add(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.save()
-            return redirect('admin_dashboard')  # Redirect after successful form submission
+            return redirect('admin_maintenance_articles')  # Redirect after successful form submission
     else:
         form = MaintenanceArticleForm()
     return render(request, 'admin/article_add.html', {'form': form})
@@ -397,24 +422,32 @@ def article_detail_user(request, pk):
 
 @login_required
 def appointment_add_user(request):
-    """
-        View to handle the creation of a new appointment.
-        """
     if request.method == 'POST':
+        repair_request_id = request.POST.get('repair_request_id')  # Lấy ID RepairRequest từ POST
+        if not repair_request_id:
+            messages.error(request, "Repair Request ID is missing.")
+            return redirect('admin_appointments')
+
+        # Lấy đối tượng RepairRequest
+        repair_request = get_object_or_404(RepairRequest, id=repair_request_id)
+
+        # Khởi tạo form với dữ liệu POST
         form = AppointmentForm(request.POST)
         if form.is_valid():
             appointment = form.save(commit=False)
-            appointment.user = request.user  # Assign the logged-in user to the appointment
-            appointment.status = 'Pending'  # Set the default status to 'Pending'
-            appointment.save()
-            messages.success(request, "Your appointment has been added successfully!")
-            return redirect('appointments')
+            appointment.user = repair_request.user  # Gán user của khách hàng liên quan đến RepairRequest
+            appointment.repair_request = repair_request  # Gán đối tượng RepairRequest
+            appointment.save()  # Lưu đối tượng Appointment
+            messages.success(request, "Appointment created successfully!")
+            return redirect('admin_appointments')
         else:
+            # In lỗi form để kiểm tra
+            print(f"Form Errors: {form.errors}")
             messages.error(request, "There was an error in your form. Please correct it and try again.")
-    else:
-        form = AppointmentForm()
+    return redirect('admin_appointments')
 
-    return render(request, 'main/dashboard/add-appointment.html', {'form': form})
+
+
 
 
 def repair_requests(request):
@@ -422,14 +455,36 @@ def repair_requests(request):
     return render(request, 'dashboard/repair_requests.html', {'repair_requests': repair_requests})
 
 def appointments(request):
-    # Fetch appointments data from the database
-    appointments = []  # Replace with actual query
+    appointments = Appointment.objects.select_related('repair_request', 'user').all()  # Query tất cả các cuộc hẹn
     return render(request, 'dashboard/appointments.html', {'appointments': appointments})
 
 def quotes(request):
-    # Fetch quotes data from the database
-    quotes = []  # Replace with actual query
-    return render(request, 'dashboard/quotes.html', {'quotes': quotes})
+    quotes = Quote.objects.all()  # Retrieve all quotes
+    repair_requests = RepairRequest.objects.all()  # Retrieve all repair requests
+
+    if request.method == 'POST':
+        repair_request_id = request.POST.get('repair_request_id')  # Retrieve repair request ID
+
+        if not repair_request_id:
+            messages.error(request, "Repair Request ID is missing.")
+            return redirect('admin_quote')  # Redirect back to quotes page
+
+        repair_request = get_object_or_404(RepairRequest, id=repair_request_id)  # Get related RepairRequest
+        form = QuoteForm(request.POST)
+
+        if form.is_valid():
+            quote = form.save(commit=False)
+            quote.repair_request = repair_request  # Assign RepairRequest to the quote
+            quote.save()
+            messages.success(request, "Repair Quote added successfully!")
+            return redirect('admin_quote')  # Redirect after successful creation
+        else:
+            messages.error(request, f"Error: {form.errors}")
+
+    return render(request, 'dashboard/quotes.html', {
+        'quotes': quotes,
+        'repair_requests': repair_requests
+    })
 
 def vehicles(request):
     vehicle_list = Vehicle.objects.all()
@@ -437,7 +492,7 @@ def vehicles(request):
 
 def maintenance_articles(request):
     # Fetch maintenance articles data from the database
-    articles = []  # Replace with actual query
+    articles = MaintenanceArticle.objects.all()
     return render(request, 'dashboard/maintenance_articles.html', {'articles': articles})
 
 def edit_repair_request(request):
@@ -449,14 +504,14 @@ def edit_repair_request(request):
         repair_request.vehicle.make = vehicle
         repair_request.status = status
         repair_request.save()
-        return redirect('repair_requests')
+        return redirect('admin_repair_requests')
 
 def delete_repair_request(request):
     if request.method == 'POST':
         request_id = request.POST.get('id')
         repair_request = get_object_or_404(RepairRequest, id=request_id)
         repair_request.delete()
-        return redirect('repair_requests')
+        return redirect('admin_repair_requests')
 
 def edit_vehicle(request, vehicle_id):
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)  # Fetch the vehicle object by ID
@@ -523,3 +578,45 @@ def delete_quote(request, quote_id):
     if request.method == 'POST':
         quote.delete()
         return redirect('quotes')
+
+
+def article_detail(request, pk):
+    article = get_object_or_404(MaintenanceArticle, pk=pk)
+    return render(request, 'dashboard/article_detail.html', {'article': article})
+
+def article_edit(request, pk):
+    article = get_object_or_404(MaintenanceArticle, pk=pk)
+    if request.method == 'POST':
+        article.title = request.POST.get('title')
+        article.content = request.POST.get('content')
+        article.category = request.POST.get('category')
+        article.save()
+        return redirect('admin_maintenance_articles')
+    return render(request, 'dashboard/article_edit.html', {'article': article})
+
+def article_delete(request, pk):
+    article = get_object_or_404(MaintenanceArticle, pk=pk)
+    if request.method == 'POST':
+        article.delete()
+        return redirect('admin_maintenance_articles')
+    return render(request, 'dashboard/article_confirm_delete.html', {'article': article})
+
+
+def quote_edit(request, pk):
+    quote = get_object_or_404(Quote, pk=pk)
+    if request.method == 'POST':
+        form = QuoteForm(request.POST, instance=quote)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Repair Quote updated successfully!")
+        else:
+            messages.error(request, f"Error: {form.errors}")
+    return redirect('admin_quotes')
+
+# View to delete a Repair Quote
+def quote_delete(request, pk):
+    quote = get_object_or_404(Quote, pk=pk)
+    if request.method == 'POST':
+        quote.delete()
+        messages.success(request, "Repair Quote deleted successfully!")
+    return redirect('admin_quotes')

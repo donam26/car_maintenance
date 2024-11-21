@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Vehicles</title>
+    <title>Repair Quotes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <style>
@@ -38,7 +38,7 @@
         }
 
         .sidebar a:hover {
-            background-color: #4CAF50;
+            background-color: #eddb63;
         }
 
         .content {
@@ -78,16 +78,42 @@
             cursor: pointer;
         }
 
-        .actions a {
+        .actions a,
+        .actions button {
             text-decoration: none;
-            color: #007bff;
             margin-right: 10px;
             font-weight: bold;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .actions a:hover {
-            color: #0056b3;
-            text-decoration: underline;
+        .btn-edit {
+            background-color: #007bff;
+        }
+
+        .btn-edit:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+
+        .btn-add {
+            background-color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .btn-add:hover {
+            background-color: #218838;
         }
     </style>
 </head>
@@ -96,31 +122,42 @@
     {% include 'components/sidebar.html' %}
 
     <div class="content">
-        <h1 class="mb-4">Vehicles</h1>
+        <h1 class="mb-4">Repair Quotes</h1>
+
+        <!-- Add Quote Button -->
+        <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addQuoteModal">Add Quote</button>
+
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Price</th>
+                    <th>Request ID</th>
+                    <th>Total Cost</th>
                     <th>Details</th>
-                    <th>Sent to User</th>
-                    <th>Repair Request ID</th>
+                    <th>Status</th>
+                    <th>Created At</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {% for quote in quote_list %}
+                {% for quote in quotes %}
                 <tr>
-                    <td>{{ quote.id }}</td>
-                    <td>{{ quote.price }}</td>
+                    <td>{{ quote.quote_id }}</td>
+                    <td>{{ quote.request_id.id }} - {{ quote.request_id.vehicle.make }} {{ quote.request_id.vehicle.model }}</td>
+                    <td>{{ quote.total_cost }}</td>
                     <td>{{ quote.details }}</td>
-                    <td>{{ quote.sent_to_user }}</td>
-                    <td>{{ quote.repair_request.id }}</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
-                            onclick="openEditModal('{{ quote.id }}', '{{ quote.price }}', '{{ quote.details }}', '{{ quote.sent_to_user }}')">Edit</button>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                            onclick="openDeleteModal('{{ quote.id }}')">Delete</button>
+                    <td>{{ quote.status }}</td>
+                    <td>{{ quote.created_at }}</td>
+                    <td class="actions">
+                        <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editQuoteModal"
+                            onclick="openEditModal('{{ quote.quote_id }}', '{{ quote.request_id }}', '{{ quote.total_cost }}', '{{ quote.details }}', '{{ quote.status }}')">
+                            Edit
+                        </button>
+
+                        <form method="post" action="{% url 'quote_delete' quote.quote_id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}
@@ -128,29 +165,83 @@
         </table>
     </div>
 
-    <!-- Edit Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <!-- Add Quote Modal -->
+    <div class="modal fade" id="addQuoteModal" tabindex="-1" aria-labelledby="addQuoteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="editForm" method="post" action="">
+                <form method="post" action="{% url 'admin_quotes' %}">
                     {% csrf_token %}
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Quote</h5>
+                        <h5 class="modal-title" id="addQuoteModalLabel">Add Quote</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="id" id="editQuoteId">
                         <div class="mb-3">
-                            <label for="editPrice" class="form-label">Price</label>
-                            <input type="text" class="form-control" id="editPrice" name="price">
+                            <label for="repairRequest" class="form-label">Repair Request</label>
+                            <select class="form-select" id="repairRequest" name="repair_request_id" required>
+                                <option value="">Select Repair Request</option>
+                                {% for request in repair_requests %}
+                                <option value="{{ request.id }}">{{ request.id }} - {{ request.vehicle.make }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="addTotalCost" class="form-label">Total Cost</label>
+                            <input type="number" class="form-control" id="addTotalCost" name="price" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="addDetails" class="form-label">Details</label>
+                            <textarea class="form-control" id="addDetails" name="details" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="addStatus" class="form-label">Status</label>
+                            <select class="form-select" id="addStatus" name="status">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Quote</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Quote Modal -->
+    <div class="modal fade" id="editQuoteModal" tabindex="-1" aria-labelledby="editQuoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" action="{% url 'quote_edit' 0 %}" id="editForm">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editQuoteModalLabel">Edit Quote</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="editQuoteId" name="quote_id">
+                        <div class="mb-3">
+                            <label for="editRequestId" class="form-label">Request ID</label>
+                            <input type="text" class="form-control" id="editRequestId" name="request_id" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTotalCost" class="form-label">Total Cost</label>
+                            <input type="number" class="form-control" id="editTotalCost" name="total_cost" required>
                         </div>
                         <div class="mb-3">
                             <label for="editDetails" class="form-label">Details</label>
-                            <textarea class="form-control" id="editDetails" name="details"></textarea>
+                            <textarea class="form-control" id="editDetails" name="details" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="editSentToUser" class="form-label">Sent to User</label>
-                            <input type="checkbox" id="editSentToUser" name="sent_to_user">
+                            <label for="editStatus" class="form-label">Status</label>
+                            <select class="form-select" id="editStatus" name="status">
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -161,51 +252,23 @@
             </div>
         </div>
     </div>
-    <!-- Delete Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="deleteForm" method="post" action="">
-                    {% csrf_token %}
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Delete Quote</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete this quote?
-                        <input type="hidden" name="id" id="deleteQuoteId">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
     <script>
-        function openEditModal(id, make, model, year, licensePlate, vin, color) {
+        function openEditModal(quoteId, requestId, totalCost, details, status) {
             const form = document.getElementById('editForm');
-            form.action = `/vehicles/edit/${id}/`; // Dynamically set the form action
-            document.getElementById('editVehicleId').value = id;
-            document.getElementById('editMake').value = make;
-            document.getElementById('editModel').value = model;
-            document.getElementById('editYear').value = year;
-            document.getElementById('editVin').value = vin; // Populate VIN field
-            document.getElementById('editLicensePlate').value = licensePlate;
-            document.getElementById('editColor').value = color; // Populate Color field
+            form.action = `{% url 'quote_edit' 0 %}`.replace('0', quoteId);
+            document.getElementById('editQuoteId').value = quoteId;
+            document.getElementById('editRequestId').value = requestId;
+            document.getElementById('editTotalCost').value = totalCost;
+            document.getElementById('editDetails').value = details;
+            document.getElementById('editStatus').value = status;
         }
-
-
-
         function openDeleteModal(id) {
-            const form = document.getElementById('deleteForm');
-            form.action = `/vehicles/delete/${id}/`;  // Update action URL dynamically
-            document.getElementById('deleteVehicleId').value = id;
+            document.getElementById('deleteQuoteId').value = id;
         }
-
     </script>
 </body>
 

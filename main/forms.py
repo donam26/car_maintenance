@@ -48,7 +48,7 @@ class RepairRequestForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ['user', 'repair_request', 'appointment_date', 'status']
+        fields = ['appointment_date']
         widgets = {
             'appointment_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'status': forms.Select(choices=Appointment.STATUS_CHOICES),
@@ -76,7 +76,7 @@ class ServiceKnowledgeForm(forms.ModelForm):
 class QuoteForm(forms.ModelForm):
     class Meta:
         model = Quote
-        fields = ['repair_request', 'price', 'details', 'sent_to_user']
+        fields = [ 'price', 'details']
         widgets = {
             'price': forms.NumberInput(attrs={'step': '0.01'}),
         }

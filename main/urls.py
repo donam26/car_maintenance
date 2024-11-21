@@ -24,6 +24,8 @@ urlpatterns = [
     path('repair-request/<int:pk>/', views.repair_request_detail, name='repair_request_detail'),
     path('repair-request/update/<int:pk>/', views.repair_request_update, name='repair_request_update'),
     path('repair-request/add/', views.repair_request_add, name='repair_request_add'),  # Add repair request
+    path('user-repair-request/add/', views.repair_request_add_user, name='repair_request_add_user'),  # Add repair request
+
 
     path('appointment/<int:pk>/', views.appointment_detail, name='appointment_detail'),
     path('appointment/update/<int:pk>/', views.appointment_update, name='appointment_update'),
@@ -52,6 +54,7 @@ urlpatterns = [
     path('repair-request/edit/', views.edit_repair_request, name='repair_request_edit'),
     path('repair-request/delete/', views.delete_repair_request, name='repair_request_delete'),
 
+
     path('vehicles/edit/<int:vehicle_id>/', views.edit_vehicle, name='edit_vehicle'),
     path('vehicles/delete/<int:vehicle_id>/', views.delete_vehicle, name='delete_vehicle'),
 
@@ -60,4 +63,12 @@ urlpatterns = [
 
     path('quotes/edit/<int:quote_id>/', views.edit_quote, name='edit_quote'),
     path('quotes/delete/<int:quote_id>/', views.delete_quote, name='delete_quote'),
+
+    path('article/<int:pk>/', views.article_detail, name='article_detail'),
+    path('article/edit/<int:pk>/', views.article_edit, name='article_edit'),
+    path('article/delete/<int:pk>/', views.article_delete, name='article_delete'),
+
+    path('repair-quotes/edit/<int:pk>/', views.quote_edit, name='quote_edit'),
+    path('repair-quotes/delete/<int:pk>/', views.quote_delete, name='quote_delete'),
+
 ]
