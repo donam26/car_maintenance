@@ -103,9 +103,34 @@ def appointments_view(request):
 
 @login_required
 def vehicle_list(request):
-    vehicles = Vehicle.objects.all()
-    return render(request, 'vehicles/vehicle_list.html', {'vehicles': vehicles})
+    if request.method == 'POST':
+        make = request.POST.get('make')
+        model = request.POST.get('model')
+        year = request.POST.get('year')
+        vin = request.POST.get('vin')
+        color = request.POST.get('color', '')  # Mặc định là chuỗi rỗng nếu không nhập
+        license_plate = request.POST.get('license_plate', '')  # Mặc định là chuỗi rỗng nếu không nhập
 
+        if not make or not model or not year or not vin:
+            messages.error(request, "All fields marked as required must be filled!")
+        else:
+            # Tạo Vehicle mới
+            Vehicle.objects.create(
+                make=make,
+                model=model,
+                year=year,
+                vin=vin,
+                color=color,
+                license_plate=license_plate,
+                user_id=request.user.id  # Liên kết với user hiện tại
+            )
+            messages.success(request, "Vehicle added successfully!")
+
+        return redirect('vehicle_list')
+
+    # Lấy danh sách các Vehicle của user hiện tại
+    vehicles = Vehicle.objects.filter(user_id=request.user.id)
+    return render(request, 'main/dashboard/vehicles.html', {'vehicles': vehicles})
 
 @login_required
 def vehicle_create(request):
@@ -459,33 +484,40 @@ def appointments(request):
     return render(request, 'dashboard/appointments.html', {'appointments': appointments})
 
 def quotes(request):
-    quotes = Quote.objects.all()  # Retrieve all quotes
-    repair_requests = RepairRequest.objects.all()  # Retrieve all repair requests
+    # Lấy tất cả các quotes kèm theo thông tin từ bảng RepairRequest qua quan hệ ForeignKey
+    quotes = Quote.objects.select_related('repair_request').all()
+    
+    # Lấy tất cả các repair requests để hiển thị trong form
+    repair_requests = RepairRequest.objects.all()
 
     if request.method == 'POST':
-        repair_request_id = request.POST.get('repair_request_id')  # Retrieve repair request ID
-
-        if not repair_request_id:
-            messages.error(request, "Repair Request ID is missing.")
-            return redirect('admin_quote')  # Redirect back to quotes page
-
-        repair_request = get_object_or_404(RepairRequest, id=repair_request_id)  # Get related RepairRequest
+        # Sử dụng QuoteForm để tạo mới
         form = QuoteForm(request.POST)
 
         if form.is_valid():
+            # Lưu thông tin Quote
             quote = form.save(commit=False)
-            quote.repair_request = repair_request  # Assign RepairRequest to the quote
-            quote.save()
-            messages.success(request, "Repair Quote added successfully!")
-            return redirect('admin_quote')  # Redirect after successful creation
+
+            # Kiểm tra và gán RepairRequest cho Quote
+            repair_request_id = request.POST.get('repair_request_id')
+            if repair_request_id:
+                repair_request = get_object_or_404(RepairRequest, id=repair_request_id)
+                quote.repair_request = repair_request
+                quote.save()  # Lưu vào database
+                messages.success(request, "Repair Quote added successfully!")
+                return redirect('admin_quotes')  # Redirect sau khi thành công
+            else:
+                messages.error(request, "Repair Request ID is missing.")
         else:
             messages.error(request, f"Error: {form.errors}")
 
+    # Trả về trang danh sách quotes
+    form = QuoteForm()
     return render(request, 'dashboard/quotes.html', {
-        'quotes': quotes,
-        'repair_requests': repair_requests
+        'quotes': quotes,  # Truyền danh sách quotes
+        'repair_requests': repair_requests,  # Truyền danh sách repair requests
+        'form': form,  # Form để thêm mới
     })
-
 def vehicles(request):
     vehicle_list = Vehicle.objects.all()
     return render(request, 'dashboard/vehicles.html', {'vehicle_list': vehicle_list})
@@ -604,14 +636,29 @@ def article_delete(request, pk):
 
 def quote_edit(request, pk):
     quote = get_object_or_404(Quote, pk=pk)
+
     if request.method == 'POST':
-        form = QuoteForm(request.POST, instance=quote)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Repair Quote updated successfully!")
-        else:
-            messages.error(request, f"Error: {form.errors}")
-    return redirect('admin_quotes')
+        # Lấy giá trị từ POST
+        repair_request_id = request.POST.get('repair_request')  # Sử dụng đúng tên trường trong form
+        price = request.POST.get('price')
+        details = request.POST.get('details')
+
+        # Kiểm tra và cập nhật repair_request
+        if repair_request_id:
+            repair_request = get_object_or_404(RepairRequest, pk=repair_request_id)
+            quote.repair_request = repair_request
+
+        # Cập nhật các trường khác
+        quote.price = price
+        quote.details = details
+        quote.save()
+
+        messages.success(request, "Repair Quote updated successfully!")
+        return redirect('admin_quotes')
+
+    # Nếu không phải POST, hiển thị lại trang
+    form = QuoteForm(instance=quote)
+    return render(request, 'dashboard/edit_quote.html', {'form': form, 'quote': quote})
 
 # View to delete a Repair Quote
 def quote_delete(request, pk):
