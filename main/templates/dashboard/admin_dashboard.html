@@ -77,7 +77,7 @@
                     {% for data in report_data %}
                     <tr>
                         <td>{{ data.user__username }}</td>
-                        <td>{{ data.total_repairs }}</td>
+                        <td>{{ data.total_appointments  }}</td>
                         <td>${{ data.total_cost|default:"0.00" }}</td>
                     </tr>
                     {% endfor %}

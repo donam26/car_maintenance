@@ -9,7 +9,7 @@ from django.http import JsonResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.db.models import Count, Sum
-
+from datetime import datetime
 from .forms import LoginForm, RegistrationForm, UserProfileForm, VehicleForm, MaintenanceArticleForm, QuoteForm, \
     AppointmentForm, RepairRequestForm
 from .models import Appointment, Vehicle, RepairRequest, Quote, MaintenanceArticle, User, Message
@@ -173,21 +173,22 @@ def vehicle_delete(request, pk):
     return render(request, 'vehicles/vehicle_confirm_delete.html', {'vehicle': vehicle})
 
 
-@login_required
 def admin_dashboard(request):
-    from datetime import datetime
     now = datetime.now()
-    monthly_repairs = RepairRequest.objects.filter(
-        created_at__year=now.year, created_at__month=now.month
-    )
+    
+    # Aggregate data for appointments by user
+    report_data = Appointment.objects.filter(
+        appointment_date__year=now.year, appointment_date__month=now.month
+    ).values('user__username').annotate(
+        total_appointments=Count('id'),
+        total_cost=Sum('cost')  # Tổng chi phí của các appointment cho từng user
+    ).order_by('-total_appointments')
 
-    # Aggregate data for analysis
-    report_data = monthly_repairs.values('user__username').annotate(
-        total_repairs=Count('id'),
-        total_cost=Sum('cost'),  # Assuming there is a 'cost' field in RepairRequest
-    ).order_by('-total_repairs')
-
-    return render(request, 'dashboard/admin_dashboard.html', {'report_data': report_data, 'month': now.strftime('%B %Y')})
+    # Return the result in context to the template
+    return render(request, 'dashboard/admin_dashboard.html', {
+        'report_data': report_data,
+        'month': now.strftime('%B %Y')
+    })
 
 
 @login_required
