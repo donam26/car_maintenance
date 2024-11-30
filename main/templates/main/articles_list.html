@@ -1,147 +1,969 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi-VN" class="loading-site no-js"> <!--<![endif]-->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maintenance Articles</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9fafc;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #eddb63;
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 20px;
+    <meta charset="UTF-8" />
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <link rel="pingback" href="https://datlichbaoduong.com/xmlrpc.php" />
+
+    <script>(function (html) { html.className = html.className.replace(/\bno-js\b/, 'js') })(document.documentElement);</script>
+    <title>Hướng dẫn sử dụng phần mềm - Phần mềm quản lý Garage ô tô được nhiều người sử dụng</title>
+
+    <link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='dns-prefetch' href='//s.w.org' />
+    <link rel="alternate" type="application/rss+xml"
+        title="Dòng thông tin Phần mềm quản lý Garage ô tô được nhiều người sử dụng &raquo;"
+        href="https://datlichbaoduong.com/feed/" />
+    <link rel="alternate" type="application/rss+xml"
+        title="Dòng phản hồi Phần mềm quản lý Garage ô tô được nhiều người sử dụng &raquo;"
+        href="https://datlichbaoduong.com/comments/feed/" />
+    <link rel="alternate" type="application/rss+xml"
+        title="Dòng thông tin chuyên mục Phần mềm quản lý Garage ô tô được nhiều người sử dụng &raquo; Hướng dẫn sử dụng phần mềm"
+        href="https://datlichbaoduong.com/chuyen-muc/huong-dan-phan-mem/feed/" />
+    <link rel="prefetch"
+        href="https://datlichbaoduong.com/wp-content/themes/flatsome/assets/js/chunk.countup.fe2c1016.js" />
+    <link rel="prefetch"
+        href="https://datlichbaoduong.com/wp-content/themes/flatsome/assets/js/chunk.sticky-sidebar.a58a6557.js" />
+    <link rel="prefetch"
+        href="https://datlichbaoduong.com/wp-content/themes/flatsome/assets/js/chunk.tooltips.29144c1c.js" />
+    <link rel="prefetch"
+        href="https://datlichbaoduong.com/wp-content/themes/flatsome/assets/js/chunk.vendors-popups.947eca5c.js" />
+    <link rel="prefetch"
+        href="https://datlichbaoduong.com/wp-content/themes/flatsome/assets/js/chunk.vendors-slider.c7f2bd49.js" />
+    <link rel='stylesheet' id='cf7_add_password_field_style-css'
+        href='https://datlichbaoduong.com/wp-content/plugins/cf7-add-password-field/css/all.css?ver=5.2.21'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css'
+        href='https://datlichbaoduong.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.9'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='kk-star-ratings-css'
+        href='https://datlichbaoduong.com/wp-content/plugins/kk-star-ratings/public/css/kk-star-ratings.css?ver=4.1.7'
+        type='text/css' media='all' />
+    <style id='kk-star-ratings-inline-css' type='text/css'>
+        .kk-star-ratings .kksr-stars .kksr-star {
+            margin-right: 4px;
         }
 
-        /* Article Styles */
-        .article {
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-            transition: background-color 0.2s ease;
-        }
-        .article:hover {
-            background-color: #f0f4f8;
-        }
-        .article h2 {
-            font-size: 1.4em;
-            color: #2c3e50;
-            margin: 0;
-        }
-        .article-info {
-            color: #888;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        .article-content {
-            font-size: 1em;
-            line-height: 1.6;
-            color: #555;
-        }
-        .read-more {
-            display: inline-block;
-            margin-top: 10px;
-            color: #eddb63;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.2s;
-        }
-        .read-more:hover {
-            color: #2980b9;
-        }
-
-        /* Back Button */
-        .button-container {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .button-container a {
-            color: #fff;
-            background-color: #eddb63;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .button-container a:hover {
-            background-color: #2980b9;
-        }
-
-        /* Scroll-to-Top Button */
-        #scrollToTopBtn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #eddb63;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        #scrollToTopBtn.show {
-            opacity: 1;
+        [dir="rtl"] .kk-star-ratings .kksr-stars .kksr-star {
+            margin-left: 4px;
+            margin-right: 0;
         }
     </style>
-</head>
-<body>
-{% include 'components/header.html' %}
+    <link rel='stylesheet' id='gsb-front-css'
+        href='https://datlichbaoduong.com/wp-content/plugins/sticky-chat-widget/assets/front/css/front.min.css?ver=1.3'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='fontawnsome-css'
+        href='https://datlichbaoduong.com/wp-content/themes/flatsome-child/css/font-awesome.min.css?ver=1.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='flatsome-main-css'
+        href='https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/flatsome.css?ver=3.15.7' type='text/css'
+        media='all' />
+    <style id='flatsome-main-inline-css' type='text/css'>
+        @font-face {
+            font-family: "fl-icons";
+            font-display: block;
+            src: url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot?v=3.15.7);
+            src:
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot#iefix?v=3.15.7) format("embedded-opentype"),
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff2?v=3.15.7) format("woff2"),
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.ttf?v=3.15.7) format("truetype"),
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff?v=3.15.7) format("woff"),
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.svg?v=3.15.7#fl-icons) format("svg");
+        }
+    </style>
+    <link rel='stylesheet' id='flatsome-style-css'
+        href='https://datlichbaoduong.com/wp-content/themes/flatsome-child/style.css?ver=3.0' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='flatsome-googlefonts-css'
+        href='//fonts.googleapis.com/css?family=Roboto%3Aregular%2C700%2Cregular%2C300%7CDancing+Script%3Aregular%2Cdefault&#038;display=block&#038;ver=3.9'
+        type='text/css' media='all' />
+    <script
+        type="text/javascript">(function (a, d) { if (a._nsl === d) { a._nsl = []; var c = function () { if (a.jQuery === d) setTimeout(c, 33); else { for (var b = 0; b < a._nsl.length; b++)a._nsl[b].call(a, a.jQuery); a._nsl = { push: function (b) { b.call(a, a.jQuery) } } } }; c() } })(window);</script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/cf7-add-password-field/js/eye.js?ver=5.2.21'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var cssTarget = { "Bodhi": "img.style-svg", "ForceInlineSVG": "style-svg" };
+        var ForceInlineSVGActive = "true";
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/svg-support/js/min/svgs-inline-min.js?ver=1.0.0'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome-child/js/vue.min.js?ver=1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome-child/js/vue-carousel-3d.min.js?ver=1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome-child/js/custom.js?ver=1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome-child/js/jet-express.js?ver=1'></script>
+    <link rel='https://api.w.org/' href='https://datlichbaoduong.com/wp-json/' />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://datlichbaoduong.com/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml"
+        href="https://datlichbaoduong.com/wp-includes/wlwmanifest.xml" />
+    <meta name="generator" content="WordPress 5.2.21" />
 
-    <div class="container">
-        <h1>Maintenance Articles</h1>
-        {% for article in articles %}
-            <div class="article">
-                <h2>{{ article.title }}</h2>
-                <p class="article-info">Published on {{ article.created_at }}</p>
-                <p class="article-content">{{ article.content|truncatewords:50 }}</p>
-                <a href="{% url 'article_detail_user' article.id %}" class="read-more">Read more...</a>
-            </div>
-        {% empty %}
-            <p style="text-align: center;">No articles available.</p>
-        {% endfor %}
-    </div>
+    <!-- Call Now Button 0.4.1 by Jerry Rietveld (callnowbutton.com) -->
+    <style>
+        #callnowbutton {
+            display: none;
+        }
 
-    <!-- Scroll-to-Top Button -->
-    <button id="scrollToTopBtn" title="Go to top">&#8679;</button>
-
-    <script>
-        // Scroll-to-Top Button Visibility
-        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-        window.onscroll = function() { toggleScrollToTopButton() };
-
-        function toggleScrollToTopButton() {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                scrollToTopBtn.classList.add("show");
-            } else {
-                scrollToTopBtn.classList.remove("show");
+        @media screen and (max-width:650px) {
+            #callnowbutton {
+                display: block;
+                position: fixed;
+                text-decoration: none;
+                z-index: 2147483647;
+                width: 65px;
+                height: 65px;
+                border-radius: 50%;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+                transform: scale(1);
+                bottom: 15px;
+                left: 50%;
+                margin-left: -33px;
+                background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNjAiPjxwYXRoIGQ9Ik03LjEwNCAxNC4wMzJsMTUuNTg2IDEuOTg0YzAgMC0wLjAxOSAwLjUgMCAwLjk1M2MwLjAyOSAwLjc1Ni0wLjI2IDEuNTM0LTAuODA5IDIuMSBsLTQuNzQgNC43NDJjMi4zNjEgMy4zIDE2LjUgMTcuNCAxOS44IDE5LjhsMTYuODEzIDEuMTQxYzAgMCAwIDAuNCAwIDEuMSBjLTAuMDAyIDAuNDc5LTAuMTc2IDAuOTUzLTAuNTQ5IDEuMzI3bC02LjUwNCA2LjUwNWMwIDAtMTEuMjYxIDAuOTg4LTI1LjkyNS0xMy42NzRDNi4xMTcgMjUuMyA3LjEgMTQgNy4xIDE0IiBmaWxsPSIjMDA1NWEwIi8+PHBhdGggZD0iTTcuMTA0IDEzLjAzMmw2LjUwNC02LjUwNWMwLjg5Ni0wLjg5NSAyLjMzNC0wLjY3OCAzLjEgMC4zNWw1LjU2MyA3LjggYzAuNzM4IDEgMC41IDIuNTMxLTAuMzYgMy40MjZsLTQuNzQgNC43NDJjMi4zNjEgMy4zIDUuMyA2LjkgOS4xIDEwLjY5OWMzLjg0MiAzLjggNy40IDYuNyAxMC43IDkuMSBsNC43NC00Ljc0MmMwLjg5Ny0wLjg5NSAyLjQ3MS0xLjAyNiAzLjQ5OC0wLjI4OWw3LjY0NiA1LjQ1NWMxLjAyNSAwLjcgMS4zIDIuMiAwLjQgMy4xMDVsLTYuNTA0IDYuNSBjMCAwLTExLjI2MiAwLjk4OC0yNS45MjUtMTMuNjc0QzYuMTE3IDI0LjMgNy4xIDEzIDcuMSAxMyIgZmlsbD0iI2ZmZmZmZiIvPjwvc3ZnPg==) center/45px 45px no-repeat #1e73be;
             }
         }
 
-        // Smooth Scroll to Top
-        scrollToTopBtn.addEventListener("click", function() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
+        #callnowbutton span {
+            display: none;
+        }
+    </style>
+    <style>
+        .bg {
+            opacity: 0;
+            transition: opacity 1s;
+            -webkit-transition: opacity 1s;
+        }
+
+        .bg-loaded {
+            opacity: 1;
+        }
+    </style>
+    <!--[if IE]><link rel="stylesheet" type="text/css" href="https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/ie-fallback.css"><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><script>var head = document.getElementsByTagName('head')[0],style = document.createElement('style');style.type = 'text/css';style.styleSheet.cssText = ':before,:after{content:none !important';head.appendChild(style);setTimeout(function(){head.removeChild(style);}, 0);</script><script src="https://datlichbaoduong.com/wp-content/themes/flatsome/assets/libs/ie-flexibility.js"></script><![endif]--><!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1134165427255972');
+        fbq('track', 'PageView');
     </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1134165427255972&ev=PageView&noscript=1" /></noscript>
+    <!-- DO NOT MODIFY -->
+    <!-- End Facebook Pixel Code -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-771450385"></script>
+    <script> window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'AW-771450385'); </script>
+    <link rel="icon"
+        href="https://datlichbaoduong.com/wp-content/uploads/2020/12/cropped-36386272_2055669431358812_2712259757091061760_o-32x32.png"
+        sizes="32x32" />
+    <link rel="icon"
+        href="https://datlichbaoduong.com/wp-content/uploads/2020/12/cropped-36386272_2055669431358812_2712259757091061760_o-192x192.png"
+        sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed"
+        href="https://datlichbaoduong.com/wp-content/uploads/2020/12/cropped-36386272_2055669431358812_2712259757091061760_o-180x180.png" />
+    <meta name="msapplication-TileImage"
+        content="https://datlichbaoduong.com/wp-content/uploads/2020/12/cropped-36386272_2055669431358812_2712259757091061760_o-270x270.png" />
+    <style id="custom-css" type="text/css">
+        :root {
+            --primary-color: #11a7dd;
+        }
+
+        html {
+            background-color: #FFFFFF !important;
+        }
+
+        .container-width,
+        .full-width .ubermenu-nav,
+        .container,
+        .row {
+            max-width: 1170px
+        }
+
+        .row.row-collapse {
+            max-width: 1140px
+        }
+
+        .row.row-small {
+            max-width: 1162.5px
+        }
+
+        .row.row-large {
+            max-width: 1200px
+        }
+
+        .sticky-add-to-cart--active,
+        #wrapper,
+        #main,
+        #main.dark {
+            background-color: #FFFFFF
+        }
+
+        .header-main {
+            height: 70px
+        }
+
+        #logo img {
+            max-height: 70px
+        }
+
+        #logo {
+            width: 56px;
+        }
+
+        #logo img {
+            padding: 9px 0;
+        }
+
+        .header-bottom {
+            min-height: 44px
+        }
+
+        .header-top {
+            min-height: 69px
+        }
+
+        .transparent .header-main {
+            height: 192px
+        }
+
+        .transparent #logo img {
+            max-height: 192px
+        }
+
+        .has-transparent+.page-title:first-of-type,
+        .has-transparent+#main>.page-title,
+        .has-transparent+#main>div>.page-title,
+        .has-transparent+#main .page-header-wrapper:first-of-type .page-title {
+            padding-top: 192px;
+        }
+
+        .transparent .header-wrapper {
+            background-color: #ffffff !important;
+        }
+
+        .transparent .top-divider {
+            display: none;
+        }
+
+        .header.show-on-scroll,
+        .stuck .header-main {
+            height: 70px !important
+        }
+
+        .stuck #logo img {
+            max-height: 70px !important
+        }
+
+        .search-form {
+            width: 100%;
+        }
+
+        .header-bg-color {
+            background-color: #eaa709
+        }
+
+        .header-bottom {
+            background-color: #f1f1f1
+        }
+
+        .header-main .nav>li>a {
+            line-height: 15px
+        }
+
+        .header-wrapper:not(.stuck) .header-main .header-nav {
+            margin-top: -4px
+        }
+
+        .stuck .header-main .nav>li>a {
+            line-height: 50px
+        }
+
+        .header-bottom-nav>li>a {
+            line-height: 13px
+        }
+
+        @media (max-width: 549px) {
+            .header-main {
+                height: 70px
+            }
+
+            #logo img {
+                max-height: 70px
+            }
+        }
+
+        .nav-dropdown-has-arrow.nav-dropdown-has-border li.has-dropdown:before {
+            border-bottom-color: #07939c;
+        }
+
+        .nav .nav-dropdown {
+            border-color: #07939c
+        }
+
+        .nav-dropdown {
+            border-radius: 5px
+        }
+
+        .nav-dropdown {
+            font-size: 108%
+        }
+
+        .nav-dropdown-has-arrow li.has-dropdown:after {
+            border-bottom-color: #07939c;
+        }
+
+        .nav .nav-dropdown {
+            background-color: #07939c
+        }
+
+        .header-top {
+            background-color: #11a7dd !important;
+        }
+
+        /* Color */
+        .accordion-title.active,
+        .has-icon-bg .icon .icon-inner,
+        .logo a,
+        .primary.is-underline,
+        .primary.is-link,
+        .badge-outline .badge-inner,
+        .nav-outline>li.active>a,
+        .nav-outline>li.active>a,
+        .cart-icon strong,
+        [data-color='primary'],
+        .is-outline.primary {
+            color: #11a7dd;
+        }
+
+        /* Color !important */
+        [data-text-color="primary"] {
+            color: #11a7dd !important;
+        }
+
+        /* Background Color */
+        [data-text-bg="primary"] {
+            background-color: #11a7dd;
+        }
+
+        /* Background */
+        .scroll-to-bullets a,
+        .featured-title,
+        .label-new.menu-item>a:after,
+        .nav-pagination>li>.current,
+        .nav-pagination>li>span:hover,
+        .nav-pagination>li>a:hover,
+        .has-hover:hover .badge-outline .badge-inner,
+        button[type="submit"],
+        .button.wc-forward:not(.checkout):not(.checkout-button),
+        .button.submit-button,
+        .button.primary:not(.is-outline),
+        .featured-table .title,
+        .is-outline:hover,
+        .has-icon:hover .icon-label,
+        .nav-dropdown-bold .nav-column li>a:hover,
+        .nav-dropdown.nav-dropdown-bold>li>a:hover,
+        .nav-dropdown-bold.dark .nav-column li>a:hover,
+        .nav-dropdown.nav-dropdown-bold.dark>li>a:hover,
+        .header-vertical-menu__opener,
+        .is-outline:hover,
+        .tagcloud a:hover,
+        .grid-tools a,
+        input[type='submit']:not(.is-form),
+        .box-badge:hover .box-text,
+        input.button.alt,
+        .nav-box>li>a:hover,
+        .nav-box>li.active>a,
+        .nav-pills>li.active>a,
+        .current-dropdown .cart-icon strong,
+        .cart-icon:hover strong,
+        .nav-line-bottom>li>a:before,
+        .nav-line-grow>li>a:before,
+        .nav-line>li>a:before,
+        .banner,
+        .header-top,
+        .slider-nav-circle .flickity-prev-next-button:hover svg,
+        .slider-nav-circle .flickity-prev-next-button:hover .arrow,
+        .primary.is-outline:hover,
+        .button.primary:not(.is-outline),
+        input[type='submit'].primary,
+        input[type='submit'].primary,
+        input[type='reset'].button,
+        input[type='button'].primary,
+        .badge-inner {
+            background-color: #11a7dd;
+        }
+
+        /* Border */
+        .nav-vertical.nav-tabs>li.active>a,
+        .scroll-to-bullets a.active,
+        .nav-pagination>li>.current,
+        .nav-pagination>li>span:hover,
+        .nav-pagination>li>a:hover,
+        .has-hover:hover .badge-outline .badge-inner,
+        .accordion-title.active,
+        .featured-table,
+        .is-outline:hover,
+        .tagcloud a:hover,
+        blockquote,
+        .has-border,
+        .cart-icon strong:after,
+        .cart-icon strong,
+        .blockUI:before,
+        .processing:before,
+        .loading-spin,
+        .slider-nav-circle .flickity-prev-next-button:hover svg,
+        .slider-nav-circle .flickity-prev-next-button:hover .arrow,
+        .primary.is-outline:hover {
+            border-color: #11a7dd
+        }
+
+        .nav-tabs>li.active>a {
+            border-top-color: #11a7dd
+        }
+
+        .widget_shopping_cart_content .blockUI.blockOverlay:before {
+            border-left-color: #11a7dd
+        }
+
+        .woocommerce-checkout-review-order .blockUI.blockOverlay:before {
+            border-left-color: #11a7dd
+        }
+
+        /* Fill */
+        .slider .flickity-prev-next-button:hover svg,
+        .slider .flickity-prev-next-button:hover .arrow {
+            fill: #11a7dd;
+        }
+
+        /* Background Color */
+        [data-icon-label]:after,
+        .secondary.is-underline:hover,
+        .secondary.is-outline:hover,
+        .icon-label,
+        .button.secondary:not(.is-outline),
+        .button.alt:not(.is-outline),
+        .badge-inner.on-sale,
+        .button.checkout,
+        .single_add_to_cart_button,
+        .current .breadcrumb-step {
+            background-color: #79ba39;
+        }
+
+        [data-text-bg="secondary"] {
+            background-color: #79ba39;
+        }
+
+        /* Color */
+        .secondary.is-underline,
+        .secondary.is-link,
+        .secondary.is-outline,
+        .stars a.active,
+        .star-rating:before,
+        .woocommerce-page .star-rating:before,
+        .star-rating span:before,
+        .color-secondary {
+            color: #79ba39
+        }
+
+        /* Color !important */
+        [data-text-color="secondary"] {
+            color: #79ba39 !important;
+        }
+
+        /* Border */
+        .secondary.is-outline:hover {
+            border-color: #79ba39
+        }
+
+        body {
+            font-size: 100%;
+        }
+
+        @media screen and (max-width: 549px) {
+            body {
+                font-size: 100%;
+            }
+        }
+
+        body {
+            font-family: "Roboto", sans-serif
+        }
+
+        body {
+            font-weight: 0
+        }
+
+        body {
+            color: #000000
+        }
+
+        .nav>li>a {
+            font-family: "Roboto", sans-serif;
+        }
+
+        .mobile-sidebar-levels-2 .nav>li>ul>li>a {
+            font-family: "Roboto", sans-serif;
+        }
+
+        .nav>li>a {
+            font-weight: 300;
+        }
+
+        .mobile-sidebar-levels-2 .nav>li>ul>li>a {
+            font-weight: 300;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .heading-font,
+        .off-canvas-center .nav-sidebar.nav-vertical>li>a {
+            font-family: "Roboto", sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .heading-font,
+        .banner h1,
+        .banner h2 {
+            font-weight: 700;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .heading-font {
+            color: #000000;
+        }
+
+        .alt-font {
+            font-family: "Dancing Script", sans-serif;
+        }
+
+        .header:not(.transparent) .header-nav-main.nav>li>a {
+            color: #ffffff;
+        }
+
+        .header:not(.transparent) .header-nav-main.nav>li>a:hover,
+        .header:not(.transparent) .header-nav-main.nav>li.active>a,
+        .header:not(.transparent) .header-nav-main.nav>li.current>a,
+        .header:not(.transparent) .header-nav-main.nav>li>a.active,
+        .header:not(.transparent) .header-nav-main.nav>li>a.current {
+            color: #ffffff;
+        }
+
+        .header-nav-main.nav-line-bottom>li>a:before,
+        .header-nav-main.nav-line-grow>li>a:before,
+        .header-nav-main.nav-line>li>a:before,
+        .header-nav-main.nav-box>li>a:hover,
+        .header-nav-main.nav-box>li.active>a,
+        .header-nav-main.nav-pills>li>a:hover,
+        .header-nav-main.nav-pills>li.active>a {
+            color: #FFF !important;
+            background-color: #ffffff;
+        }
+
+        .header:not(.transparent) .header-bottom-nav.nav>li>a {
+            color: #FFFFFF;
+        }
+
+        a {
+            color: #000000;
+        }
+
+        .header-main .social-icons,
+        .header-main .cart-icon strong,
+        .header-main .menu-title,
+        .header-main .header-button>.button.is-outline,
+        .header-main .nav>li>a>i:not(.icon-angle-down) {
+            color: #ffffff !important;
+        }
+
+        .header-main .header-button>.button.is-outline,
+        .header-main .cart-icon strong:after,
+        .header-main .cart-icon strong {
+            border-color: #ffffff !important;
+        }
+
+        .header-main .header-button>.button:not(.is-outline) {
+            background-color: #ffffff !important;
+        }
+
+        .header-main .current-dropdown .cart-icon strong,
+        .header-main .header-button>.button:hover,
+        .header-main .header-button>.button:hover i,
+        .header-main .header-button>.button:hover span {
+            color: #FFF !important;
+        }
+
+        .header-main .menu-title:hover,
+        .header-main .social-icons a:hover,
+        .header-main .header-button>.button.is-outline:hover,
+        .header-main .nav>li>a:hover>i:not(.icon-angle-down) {
+            color: #ffffff !important;
+        }
+
+        .header-main .current-dropdown .cart-icon strong,
+        .header-main .header-button>.button:hover {
+            background-color: #ffffff !important;
+        }
+
+        .header-main .current-dropdown .cart-icon strong:after,
+        .header-main .current-dropdown .cart-icon strong,
+        .header-main .header-button>.button:hover {
+            border-color: #ffffff !important;
+        }
+
+        .footer-1 {
+            background-color: #43db8f
+        }
+
+        .footer-2 {
+            background-color: #eaa709
+        }
+
+        .absolute-footer,
+        html {
+            background-color: #07939c
+        }
+
+        button[name='update_cart'] {
+            display: none;
+        }
+
+        .label-new.menu-item>a:after {
+            content: "New";
+        }
+
+        .label-hot.menu-item>a:after {
+            content: "Hot";
+        }
+
+        .label-sale.menu-item>a:after {
+            content: "Sale";
+        }
+
+        .label-popular.menu-item>a:after {
+            content: "Popular";
+        }
+    </style>
+    <style type="text/css" id="wp-custom-css">
+        /*Chỉnh button phần đầu trang*/
+        .button-container {
+            display: flex;
+
+            align-items: center;
+            /* Căn chỉnh các button theo chiều dọc */
+            overflow-x: auto;
+            /* Cho phép cuộn ngang nếu cần thiết */
+            overflow-y: hidden;
+            /* Ẩn thanh cuộn dọc */
+        }
+
+        .button {
+            padding: 2px 20px;
+            /* Thay đổi padding để phù hợp với thiết kế */
+            text-decoration: none;
+            color: #ffffff;
+            /* Màu chữ của nút */
+
+            border-radius: 13px;
+            display: inline-flex;
+            /* Sử dụng inline-flex để các button nằm trên cùng 1 hàng */
+            align-items: center;
+            /* Căn chỉnh nội dung theo chiều dọc */
+            justify-content: center;
+            /* Căn chỉnh nội dung theo chiều ngang */
+
+        }
+
+        .button.secondary i {
+            margin-left: 5px;
+            /* Khoảng cách giữa chữ và icon */
+            vertical-align: middle;
+            /* Căn chỉnh icon theo chiều dọc */
+        }
+    </style>
+</head>
+
+<body
+    class="archive category category-huong-dan-phan-mem category-174 full-width lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
+
+    <script>!function (s, u, b, i, z) { var o, t, r, y; s[i] || (s._sbzaccid = z, s[i] = function () { s[i].q.push(arguments) }, s[i].q = [], s[i]("setAccount", z), r = ["widget.subiz.net", "storage.googleapis" + (t = ".com"), "app.sbz.workers.dev", i + "a" + (o = function (k, t) { var n = t <= 6 ? 5 : o(k, t - 1) + o(k, t - 3); return k !== t ? n : n.toString(32) })(20, 20) + t, i + "b" + o(30, 30) + t, i + "c" + o(40, 40) + t], (y = function (k) { var t, n; s._subiz_init_2094850928430 || r[k] && (t = u.createElement(b), n = u.getElementsByTagName(b)[0], t.async = 1, t.src = "https://" + r[k] + "/sbz/app.js?accid=" + z, n.parentNode.insertBefore(t, n), setTimeout(y, 2e3, k + 1)) })(0)) }(window, document, "script", "subiz", "acrvqvpdepqvsxyevhhu")</script>
+    <a class="skip-link screen-reader-text" href="#main">Skip to content</a>
+
+    <div id="wrapper">
+
+        {% include 'components/header.html' %}
+
+
+        <main id="main" class="">
+
+            <div id="content" class="blog-wrapper blog-archive page-wrapper">
+                <header class="archive-page-header">
+                    <div class="row">
+                        <div class="large-12 text-center col">
+                            <h3 class="page-title is-large uppercase">
+                                Category Archives: <span>Hướng dẫn sử dụng phần mềm</span> </h3>
+                        </div>
+                    </div>
+                </header>
+
+
+                <div class="row row-large ">
+
+                    <div class="large-9 col">
+                        <div class="row large-columns-1 medium-columns- small-columns-1">
+        {% for article in articles %}
+                            <div class="col post-item">
+                                <div class="col-inner">
+                                    <a href="{% url 'article_detail_user' article.id %}" class="plain">  
+                                        <div class="box box-vertical box-text-bottom box-blog-post has-hover">
+                                            <div class="box-image" style="width:40%;">
+                                                <div class="image-cover" style="padding-top:56%;">
+                                                    {% if article.image %}
+                                                    <img width="600" height="400" src="{{ article.image.url }}" alt="{{ article.title }}" class="lazy-load">
+                                                {% else %}
+                                                    <img width="600" height="400" src="default_image.jpg" alt="No Image Available" class="lazy-load">  <!-- Hình ảnh mặc định nếu không có -->
+                                                {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="box-text text-left">
+                                                <div class="box-text-inner blog-post-inner">
+
+
+                                                    <h5 class="post-title is-large ">{{ article.title }}</h5>
+                                                    <div class="is-divider"></div>
+                                                    <p class="from_the_blog_excerpt ">{{ article.content|truncatewords:20 }}</p>
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div class="badge absolute top post-date badge-outline">
+                                                <div class="badge-inner">
+                                                    <span class="post-date-day">19</span><br>
+                                                    <span class="post-date-month is-xsmall">Th8</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                    <div class="post-sidebar large-3 col">
+                        <div id="secondary" class="widget-area " role="complementary">
+                            <aside id="custom_html-4" class="widget_text widget widget_custom_html"><span
+                                    class="widget-title "><span>Sản phẩm tiếp cận</span></span>
+                                <div class="is-divider small"></div>
+                                <div class="textwidget custom-html-widget">
+                                    <div class="pricing-table-wrapper dark">
+                                        <div class="pricing-table ux_price_table text-center box-shadow-3-hover"
+                                            style="background-color:rgb(7, 147, 156);">
+                                            <div class="pricing-table-header">
+                                                <div class="title uppercase strong">BASE JET</div>
+                                                <div class="price is-xxlarge">0 VNĐ</div>
+                                            </div>
+                                            <div class="pricing-table-items items">
+
+
+                                                <a href="#" target="_self" class="button primary"
+                                                    style="border-radius:8px;" rel="noopener noreferrer">
+                                                    <span>ĐĂNG KÝ SỬ DỤNG</span>
+                                                </a>
+
+
+                                                <a rel="noopener noreferrer"
+                                                    href="#"
+                                                    target="_blank" class="button success is-gloss"
+                                                    style="border-radius:10px;">
+                                                    <span>Tìm hiểu thêm</span>
+                                                </a>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </aside>
+                            <aside id="custom_html-6" class="widget_text widget widget_custom_html">
+                                <div class="textwidget custom-html-widget">
+                                    <div class="pricing-table-wrapper">
+                                        <div class="pricing-table ux_price_table text-center box-shadow-3-hover featured-table"
+                                            style="background-color:rgb(7, 147, 156);">
+                                            <div class="pricing-table-header">
+                                                <div class="title uppercase strong">DETAILING JET</div>
+                                                <div class="price is-xxlarge">300.000VNĐ</div>
+                                            </div>
+                                            <div class="pricing-table-items items">
+
+
+                                                <a href="#" target="_self"
+                                                    class="button rgb(7, 147, 156)" style="border-radius:10px;"
+                                                    rel="noopener noreferrer">
+                                                    <span>dùng thử 7 ngày</span>
+                                                </a>
+
+
+                                                <a rel="noopener noreferrer"
+                                                    href="#"
+                                                    target="_blank" class="button success" style="border-radius:10px;">
+                                                    <span>tìm hiểu thêm</span>
+                                                </a>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </aside>
+                            <aside id="custom_html-5" class="widget_text widget widget_custom_html">
+                                <div class="textwidget custom-html-widget">
+                                    <div class="pricing-table-wrapper dark">
+                                        <div class="pricing-table ux_price_table text-center box-shadow-3-hover featured-table"
+                                            style="background-color:rgb(7, 147, 156);">
+                                            <div class="pricing-table-header">
+                                                <div class="title uppercase strong">GARAGE JET</div>
+                                                <div class="price is-xxlarge">450.000VNĐ</div>
+                                            </div>
+                                            <div class="pricing-table-items items">
+
+                                                <a href="#" target="_self" class="button alert"
+                                                    style="border-radius:6px;" rel="noopener noreferrer">
+                                                    <span>dùng thử 7 ngày</span>
+                                                </a>
+
+
+                                                <a rel="noopener noreferrer"
+                                                    href="#"
+                                                    target="_blank" class="button success is-gloss"
+                                                    style="border-radius:10px;">
+                                                    <span>Tìm hiểu thêm</span>
+                                                </a>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </main><!-- #main -->
+
+
+    </div><!-- #wrapper -->
+
+    <a href="#" id="callnowbutton"
+        onclick="return gtag_report_conversion('#');"><span>Call Now Button</span></a>
+    <link rel='stylesheet' id='mediaelement-css'
+        href='https://datlichbaoduong.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.6-78496d1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='wp-mediaelement-css'
+        href='https://datlichbaoduong.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.2.21'
+        type='text/css' media='all' />
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var wpcf7 = { "apiSettings": { "root": "https:\/\/datlichbaoduong.com\/wp-json\/contact-form-7\/v1", "namespace": "contact-form-7\/v1" }, "cached": "1" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.9'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var kk_star_ratings = { "action": "kk-star-ratings", "endpoint": "https:\/\/datlichbaoduong.com\/wp-admin\/admin-ajax.php", "nonce": "78b01580bb" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/kk-star-ratings/public/js/kk-star-ratings.js?ver=4.1.7'></script>
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/sticky-chat-widget/assets/front/js/script.min.js?ver=1.3'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome/inc/extensions/flatsome-instant-page/flatsome-instant-page.js?ver=1.2.1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome/inc/extensions/flatsome-live-search/flatsome-live-search.js?ver=3.15.7'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=7.0.0'></script>
+    <script type='text/javascript'>
+        ('fetch' in window) || document.write('<script src="https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js?ver=3.0.0"></scr' + 'ipt>'); (document.contains) || document.write('<script src="https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js?ver=3.26.0-0"></scr' + 'ipt>'); (window.FormData && window.FormData.prototype.keys) || document.write('<script src="https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js?ver=3.0.12"></scr' + 'ipt>'); (Element.prototype.matches && Element.prototype.closest) || document.write('<script src="https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js?ver=2.0.2"></scr' + 'ipt>');
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/hoverIntent.min.js?ver=1.8.1'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var flatsomeVars = { "theme": { "version": "3.15.7" }, "ajaxurl": "https:\/\/datlichbaoduong.com\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "70", "assets_url": "https:\/\/datlichbaoduong.com\/wp-content\/themes\/flatsome\/assets\/js\/", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu", "toggleButton": "Toggle" }, "options": { "cookie_notice_version": "1", "swatches_layout": false, "swatches_box_select_event": false, "swatches_box_behavior_selected": false, "swatches_box_update_urls": "1", "swatches_box_reset": false, "swatches_box_reset_extent": false, "swatches_box_reset_time": 300, "search_result_latency": "0" } };
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome/assets/js/flatsome.js?ver=2ba06bae7e21001b4413f16ac4e08981'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome/inc/extensions/flatsome-lazy-load/flatsome-lazy-load.js?ver=3.15.7'></script>
+    <!--[if IE]>
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/intersection-observer-polyfill@0.1.0/dist/IntersectionObserver.js?ver=0.1.0'></script>
+<![endif]-->
+    <script type='text/javascript' src='https://datlichbaoduong.com/wp-includes/js/wp-embed.min.js?ver=5.2.21'></script>
+    <script type='text/javascript'>
+        var mejsL10n = { "language": "vi", "strings": { "mejs.install-flash": "B\u1ea1n \u0111ang s\u1eed d\u1ee5ng tr\u00ecnh duy\u1ec7t kh\u00f4ng h\u1ed7 tr\u1ee3 Flash player. Vui l\u00f2ng b\u1eadt ho\u1eb7c c\u00e0i \u0111\u1eb7t \n phi\u00ean b\u1ea3n m\u1edbi nh\u1ea5t t\u1ea1i https:\/\/get.adobe.com\/flashplayer\/", "mejs.fullscreen-off": "T\u1eaft hi\u1ec3n th\u1ecb to\u00e0n m\u00e0n h\u00ecnh", "mejs.fullscreen-on": "Hi\u1ec3n th\u1ecb to\u00e0n m\u00e0n h\u00ecnh ", "mejs.download-video": "T\u1ea3i video v\u1ec1", "mejs.fullscreen": "To\u00e0n m\u00e0n h\u00ecnh", "mejs.time-jump-forward": ["Tua nhanh 1 gi\u00e2y", "Chuy\u1ec3n v\u1ec1 ph\u00eda tr\u01b0\u1edbc %1 gi\u00e2y"], "mejs.loop": "Chuy\u1ec3n \u0111\u1ed5i v\u00f2ng l\u1eb7p", "mejs.play": "Ch\u1ea1y", "mejs.pause": "T\u1ea1m d\u1eebng", "mejs.close": "\u0110\u00f3ng", "mejs.time-slider": "Th\u1eddi gian tr\u00ecnh chi\u1ebfu", "mejs.time-help-text": "S\u1eed d\u1ee5ng c\u00e1c ph\u00edm m\u0169i t\u00ean Tr\u00e1i\/Ph\u1ea3i \u0111\u1ec3 ti\u1ebfn m\u1ed9t gi\u00e2y, m\u0169i t\u00ean L\u00ean\/Xu\u1ed1ng \u0111\u1ec3 ti\u1ebfn m\u01b0\u1eddi gi\u00e2y.", "mejs.time-skip-back": ["B\u1ecf qua 1 gi\u00e2y", "L\u00f9i l\u1ea1i %1 gi\u00e2y"], "mejs.captions-subtitles": "Ph\u1ee5 \u0111\u1ec1", "mejs.captions-chapters": "C\u00e1c m\u1ee5c", "mejs.none": "Tr\u1ed1ng", "mejs.mute-toggle": "B\u1eadt\/t\u1eaft ch\u1ebf \u0111\u1ed9 im l\u1eb7ng", "mejs.volume-help-text": "S\u1eed d\u1ee5ng c\u00e1c ph\u00edm m\u0169i t\u00ean L\u00ean\/Xu\u1ed1ng \u0111\u1ec3 t\u0103ng ho\u1eb7c gi\u1ea3m \u00e2m l\u01b0\u1ee3ng.", "mejs.unmute": "B\u1eadt ti\u1ebfng", "mejs.mute": "T\u1eaft ti\u1ebfng", "mejs.volume-slider": "\u00c2m l\u01b0\u1ee3ng Tr\u00ecnh chi\u1ebfu", "mejs.video-player": "Tr\u00ecnh ch\u01a1i Video", "mejs.audio-player": "Tr\u00ecnh ch\u01a1i Audio", "mejs.ad-skip": "B\u1ecf qua qu\u1ea3ng c\u00e1o", "mejs.ad-skip-info": ["B\u1ecf qua trong 1 gi\u00e2y", "B\u1ecf qua trong %1 gi\u00e2y"], "mejs.source-chooser": "Ch\u1ecdn ngu\u1ed3n", "mejs.stop": "D\u1eebng", "mejs.speed-rate": "T\u1ed1c \u0111\u1ed9", "mejs.live-broadcast": "Tr\u1ef1c ti\u1ebfp", "mejs.afrikaans": "Ti\u1ebfng Nam Phi", "mejs.albanian": "Ti\u1ebfng Albani", "mejs.arabic": "Ti\u1ebfng \u1ea2 R\u1eadp", "mejs.belarusian": "Ti\u1ebfng Belarus", "mejs.bulgarian": "Ti\u1ebfng Bulgari", "mejs.catalan": "Ti\u1ebfng Catalan", "mejs.chinese": "Ti\u1ebfng Trung Qu\u1ed1c", "mejs.chinese-simplified": "Ti\u1ebfng Trung Qu\u1ed1c (gi\u1ea3n th\u1ec3)", "mejs.chinese-traditional": "Ti\u1ebfng Trung ( Ph\u1ed3n th\u1ec3 )", "mejs.croatian": "Ti\u1ebfng Croatia", "mejs.czech": "Ti\u1ebfng S\u00e9c", "mejs.danish": "Ti\u1ebfng \u0110an M\u1ea1ch", "mejs.dutch": "Ti\u1ebfng H\u00e0 Lan", "mejs.english": "Ti\u1ebfng Anh", "mejs.estonian": "Ti\u1ebfng Estonia", "mejs.filipino": "Ti\u1ebfng Philippin", "mejs.finnish": "Ti\u1ebfng Ph\u1ea7n Lan", "mejs.french": "Ti\u1ebfng Ph\u00e1p", "mejs.galician": "Ti\u1ebfng Galicia", "mejs.german": "Ti\u1ebfng \u0110\u1ee9c", "mejs.greek": "Ti\u1ebfng Hy L\u1ea1p", "mejs.haitian-creole": "Ti\u1ebfng Haiti", "mejs.hebrew": "Ti\u1ebfng Do Th\u00e1i", "mejs.hindi": "Ti\u1ebfng Hindu", "mejs.hungarian": "Ti\u1ebfng Hungary", "mejs.icelandic": "Ti\u1ebfng Ailen", "mejs.indonesian": "Ti\u1ebfng Indonesia", "mejs.irish": "Ti\u1ebfng Ailen", "mejs.italian": "Ti\u1ebfng \u00dd", "mejs.japanese": "Ti\u1ebfng Nh\u1eadt", "mejs.korean": "Ti\u1ebfng H\u00e0n Qu\u1ed1c", "mejs.latvian": "Ti\u1ebfng Latvia", "mejs.lithuanian": "Ti\u1ebfng Lithuani", "mejs.macedonian": "Ti\u1ebfng Macedonia", "mejs.malay": "Ti\u1ebfng Malaysia", "mejs.maltese": "Ti\u1ebfng Maltese", "mejs.norwegian": "Ti\u1ebfng Na Uy", "mejs.persian": "Ti\u1ebfng Ba T\u01b0", "mejs.polish": "Ti\u1ebfng Ba Lan", "mejs.portuguese": "Ti\u1ebfng B\u1ed3 \u0110\u00e0o Nha", "mejs.romanian": "Ti\u1ebfng Romani", "mejs.russian": "Ti\u1ebfng Nga", "mejs.serbian": "Ti\u1ebfng Serbia", "mejs.slovak": "Ti\u1ebfng Slovakia", "mejs.slovenian": "Ti\u1ebfng Slovenia", "mejs.spanish": "Ti\u1ebfng T\u00e2y Ban Nha", "mejs.swahili": "Ti\u1ebfng Swahili", "mejs.swedish": "Ti\u1ebfng Th\u1ee5y \u0110i\u1ec3n", "mejs.tagalog": "Ti\u1ebfng Tagalog", "mejs.thai": "Ti\u1ebfng Th\u00e1i", "mejs.turkish": "Ti\u1ebfng Th\u1ed5 Nh\u0129 K\u00ec", "mejs.ukrainian": "Ti\u1ebfng Ukraina", "mejs.vietnamese": "Ti\u1ebfng Vi\u1ec7t", "mejs.welsh": "Ti\u1ebfng Welsh", "mejs.yiddish": "Ti\u1ebfng Yiddish" } };
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/mediaelement/mediaelement-and-player.min.js?ver=4.2.6-78496d1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/mediaelement/mediaelement-migrate.min.js?ver=5.2.21'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var _wpmejsSettings = { "pluginPath": "\/wp-includes\/js\/mediaelement\/", "classPrefix": "mejs-", "stretching": "responsive" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/mediaelement/wp-mediaelement.min.js?ver=5.2.21'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/mediaelement/renderers/vimeo.min.js?ver=4.2.6-78496d1'></script>
+    <script>!function (s, u, b, i, z) { var o, t, r, y; s[i] || (s._sbzaccid = z, s[i] = function () { s[i].q.push(arguments) }, s[i].q = [], s[i]("setAccount", z), r = ["widget.subiz.net", "storage.googleapis" + (t = ".com"), "app.sbz.workers.dev", i + "a" + (o = function (k, t) { var n = t <= 6 ? 5 : o(k, t - 1) + o(k, t - 3); return k !== t ? n : n.toString(32) })(20, 20) + t, i + "b" + o(30, 30) + t, i + "c" + o(40, 40) + t], (y = function (k) { var t, n; s._subiz_init_2094850928430 || r[k] && (t = u.createElement(b), n = u.getElementsByTagName(b)[0], t.async = 1, t.src = "https://" + r[k] + "/sbz/app.js?accid=" + z, n.parentNode.insertBefore(t, n), setTimeout(y, 2e3, k + 1)) })(0)) }(window, document, "script", "subiz", "acrvqvpdepqvsxyevhhu")</script>
 </body>
+
 </html>
+
+<!-- Dynamic page generated in 1.490 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2024-11-30 13:52:31 -->
+
+<!-- super cache -->

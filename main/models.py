@@ -47,10 +47,10 @@ class RepairRequest(models.Model):
 class Appointment(models.Model):
     STATUS_CHOICES = [('Confirmed', 'Confirmed'), ('Pending', 'Pending'), ('Canceled', 'Canceled')]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    repair_request = models.ForeignKey(RepairRequest, on_delete=models.CASCADE)
+    repair_request = models.ForeignKey(RepairRequest, on_delete=models.SET_NULL, null=True)  # Thay đổi ở đây
     appointment_date = models.DateTimeField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending')
-
+    cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)  # Add this field
 
 class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -88,3 +88,4 @@ class MaintenanceArticle(models.Model):
     content = models.TextField()
     category = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='maintenance_articles/', null=True, blank=True)

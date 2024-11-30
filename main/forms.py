@@ -39,7 +39,7 @@ class VehicleForm(forms.ModelForm):
 class RepairRequestForm(forms.ModelForm):
     class Meta:
         model = RepairRequest
-        fields = ['user', 'vehicle', 'description', 'status']
+        fields = ['user', 'vehicle', 'description', 'status', 'cost']
         widgets = {
             'status': forms.Select(choices=RepairRequest.STATUS_CHOICES),
         }
@@ -48,7 +48,7 @@ class RepairRequestForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ['appointment_date']
+        fields = ['cost', 'appointment_date']
         widgets = {
             'appointment_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'status': forms.Select(choices=Appointment.STATUS_CHOICES),
@@ -85,4 +85,4 @@ class QuoteForm(forms.ModelForm):
 class MaintenanceArticleForm(forms.ModelForm):
     class Meta:
         model = MaintenanceArticle
-        fields = ['title', 'content', 'category']
+        fields = ['title', 'content', 'category', 'image']  # Thêm trường 'image' vào fields

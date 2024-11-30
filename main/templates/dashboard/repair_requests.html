@@ -38,7 +38,7 @@
         }
 
         .sidebar a:hover {
-            background-color: #EDDB63;
+            background-color: #EAA709;
         }
 
         .content {
@@ -110,7 +110,7 @@
 
 
     <div class="content">
-        <h1 class="mb-4">Dashboard</h1>
+        <h1 class="mb-4">Repair Request</h1>
         <table>
             <thead>
                 <tr>
@@ -168,6 +168,10 @@
                                 <option value="Completed">Completed</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="editCost" class="form-label">Cost</label>
+                            <input type="number" class="form-control" id="editCost" name="cost"   required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -215,6 +219,10 @@
                         <!-- Sử dụng ID được set qua JavaScript -->
                         <input type="hidden" name="repair_request_id" id="addAppointmentRequestId">
                         <div class="mb-3">
+                            <label for="cost" class="form-label">Cost</label>
+                            <input type="number" class="form-control" id="cost" name="cost" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="appointmentDate" class="form-label">Appointment Date</label>
                             <input type="datetime-local" class="form-control" id="appointmentDate"
                                 name="appointment_date" required>
@@ -238,8 +246,9 @@
             document.getElementById('editRequestId').value = id;
             document.getElementById('editVehicle').value = vehicle;
             document.getElementById('editStatus').value = status;
+            document.getElementById('editCost').value = cost;
         }
-
+        
         function openDeleteModal(id) {
             document.getElementById('deleteRequestId').value = id;
         }

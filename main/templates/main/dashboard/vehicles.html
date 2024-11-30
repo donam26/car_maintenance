@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,7 @@
         h1 {
             text-align: center;
             padding: 20px;
-            background-color: #eddb63;
+            background-color: #EAA709;
             color: #fff;
             margin: 0;
         }
@@ -38,11 +39,12 @@
         }
 
         table thead {
-            background-color: #eddb63;
+            background-color: #EAA709;
             color: white;
         }
 
-        table th, table td {
+        table th,
+        table td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #eee;
@@ -57,119 +59,1310 @@
             color: #666;
             font-style: italic;
         }
+
         .button-container {
             text-align: center;
             margin-top: 20px;
         }
+
         .btn-green {
-            color:white;
-            background-color: #EDDB63;
+            color: white;
+            background-color: #EAA709;
         }
+
         .btn-green:hover {
             background-color: #e1cb39;
         }
     </style>
 </head>
-<body>
-{% include 'components/header.html' %}
 
-{% if messages %}
-<div>
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} text-center">
-            {{ message }}
-        </div>
-    {% endfor %}
-</div>
-{% endif %}
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>Year</th>
-                    <th>VIN</th>
-                    <th>Color</th>
-                    <th>License Plate</th>
-                    <th>Last Maintenance</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Loop to display data dynamically -->
-                {% for vehicle in vehicles %}
-                <tr>
-                    <td>{{ vehicle.id }}</td>
-                    <td>{{ vehicle.make }}</td>
-                    <td>{{ vehicle.model }}</td>
-                    <td>{{ vehicle.year }}</td>
-                    <td>{{ vehicle.vin }}</td>
-                    <td>{{ vehicle.color }}</td>
-                    <td>{{ vehicle.license_plate }}</td>
-                    <td>{{ vehicle.last_maintenance }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="9" class="no-data">No vehicles available</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<body>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Articles</title>
+    <link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='dns-prefetch' href='//s.w.org' />
+
+    <link rel='stylesheet' id='gsb-front-css'
+        href='https://datlichbaoduong.com/wp-content/plugins/sticky-chat-widget/assets/front/css/front.min.css?ver=1.3'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='fontawnsome-css'
+        href='https://datlichbaoduong.com/wp-content/themes/flatsome-child/css/font-awesome.min.css?ver=1.1'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='flatsome-main-css'
+        href='https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/flatsome.css?ver=3.15.7' type='text/css'
+        media='all' />
+    <style id='flatsome-main-inline-css' type='text/css'>
+        @font-face {
+            font-family: "fl-icons";
+            font-display: block;
+            src: url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot?v=3.15.7);
+            src:
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot#iefix?v=3.15.7) format("embedded-opentype"),
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff2?v=3.15.7) format("woff2"),
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.ttf?v=3.15.7) format("truetype"),
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff?v=3.15.7) format("woff"),
+                url(https://datlichbaoduong.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.svg?v=3.15.7#fl-icons) format("svg");
+        }
+    </style>
+    <link rel='stylesheet' id='flatsome-style-css'
+        href='https://datlichbaoduong.com/wp-content/themes/flatsome-child/style.css?ver=3.0' type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='flatsome-googlefonts-css'
+        href='//fonts.googleapis.com/css?family=Roboto%3Aregular%2C700%2Cregular%2C300%7CDancing+Script%3Aregular%2Cdefault&#038;display=block&#038;ver=3.9'
+        type='text/css' media='all' />
+    <script
+        type="text/javascript">(function (a, d) { if (a._nsl === d) { a._nsl = []; var c = function () { if (a.jQuery === d) setTimeout(c, 33); else { for (var b = 0; b < a._nsl.length; b++)a._nsl[b].call(a, a.jQuery); a._nsl = { push: function (b) { b.call(a, a.jQuery) } } } }; c() } })(window);</script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/cf7-add-password-field/js/eye.js?ver=5.2.21'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var cssTarget = { "Bodhi": "img.style-svg", "ForceInlineSVG": "style-svg" };
+        var ForceInlineSVGActive = "true";
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/svg-support/js/min/svgs-inline-min.js?ver=1.0.0'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome-child/js/vue.min.js?ver=1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome-child/js/vue-carousel-3d.min.js?ver=1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome-child/js/custom.js?ver=1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome-child/js/jet-express.js?ver=1'></script>
+    <link rel='https://api.w.org/' href='https://datlichbaoduong.com/wp-json/' />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://datlichbaoduong.com/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml"
+        href="https://datlichbaoduong.com/wp-includes/wlwmanifest.xml" />
+    <meta name="generator" content="WordPress 5.2.21" />
+    <link rel='shortlink' href='https://datlichbaoduong.com/?p=5294' />
+    <link rel="alternate" type="application/json+oembed"
+        href="https://datlichbaoduong.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdatlichbaoduong.com%2Ftinh-nang-phan-mem%2F" />
+    <link rel="alternate" type="text/xml+oembed"
+        href="https://datlichbaoduong.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdatlichbaoduong.com%2Ftinh-nang-phan-mem%2F&#038;format=xml" />
+
+    <!-- Call Now Button 0.4.1 by Jerry Rietveld (callnowbutton.com) -->
+    <style>
+        #callnowbutton {
+            display: none;
+        }
+
+        @media screen and (max-width:650px) {
+            #callnowbutton {
+                display: block;
+                position: fixed;
+                text-decoration: none;
+                z-index: 2147483647;
+                width: 65px;
+                height: 65px;
+                border-radius: 50%;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+                transform: scale(1);
+                bottom: 15px;
+                left: 50%;
+                margin-left: -33px;
+                background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNjAiPjxwYXRoIGQ9Ik03LjEwNCAxNC4wMzJsMTUuNTg2IDEuOTg0YzAgMC0wLjAxOSAwLjUgMCAwLjk1M2MwLjAyOSAwLjc1Ni0wLjI2IDEuNTM0LTAuODA5IDIuMSBsLTQuNzQgNC43NDJjMi4zNjEgMy4zIDE2LjUgMTcuNCAxOS44IDE5LjhsMTYuODEzIDEuMTQxYzAgMCAwIDAuNCAwIDEuMSBjLTAuMDAyIDAuNDc5LTAuMTc2IDAuOTUzLTAuNTQ5IDEuMzI3bC02LjUwNCA2LjUwNWMwIDAtMTEuMjYxIDAuOTg4LTI1LjkyNS0xMy42NzRDNi4xMTcgMjUuMyA3LjEgMTQgNy4xIDE0IiBmaWxsPSIjMDA1NWEwIi8+PHBhdGggZD0iTTcuMTA0IDEzLjAzMmw2LjUwNC02LjUwNWMwLjg5Ni0wLjg5NSAyLjMzNC0wLjY3OCAzLjEgMC4zNWw1LjU2MyA3LjggYzAuNzM4IDEgMC41IDIuNTMxLTAuMzYgMy40MjZsLTQuNzQgNC43NDJjMi4zNjEgMy4zIDUuMyA2LjkgOS4xIDEwLjY5OWMzLjg0MiAzLjggNy40IDYuNyAxMC43IDkuMSBsNC43NC00Ljc0MmMwLjg5Ny0wLjg5NSAyLjQ3MS0xLjAyNiAzLjQ5OC0wLjI4OWw3LjY0NiA1LjQ1NWMxLjAyNSAwLjcgMS4zIDIuMiAwLjQgMy4xMDVsLTYuNTA0IDYuNSBjMCAwLTExLjI2MiAwLjk4OC0yNS45MjUtMTMuNjc0QzYuMTE3IDI0LjMgNy4xIDEzIDcuMSAxMyIgZmlsbD0iI2ZmZmZmZiIvPjwvc3ZnPg==) center/45px 45px no-repeat #1e73be;
+            }
+        }
+
+        #callnowbutton span {
+            display: none;
+        }
+    </style>
+
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1134165427255972');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1134165427255972&ev=PageView&noscript=1" /></noscript>
+</head>
+
+<body>
+    {% include 'components/header.html' %}
+
+    <div >
+                
+                <div class="button-container">
+                    <button data-bs-toggle="modal" data-bs-target="#addVehicleModal"
+                        class="button secondary is-shade is-large box-shadow-2 box-shadow-5-hover"
+                        style="border-radius:34px;">
+                        Add Vehicle
+                    </button>
+                </div>
+
+        <style>
+            #banner-1638928464 {
+                padding-top: 120px;
+                background-color: rgb(234, 167, 9);
+            }
+
+            #banner-1638928464 .ux-shape-divider--top svg {
+                height: 150px;
+                --divider-top-width: 100%;
+            }
+
+            #banner-1638928464 .ux-shape-divider--bottom svg {
+                height: 150px;
+                --divider-width: 100%;
+            }
+        </style>
     </div>
-    <!-- Add Vehicle Button -->
-    <div class="button-container">
-        <button class="btn btn-green" data-bs-toggle="modal" data-bs-target="#addVehicleModal">
-            Add Vehicle
-</button>
+
+
+    <section class="section" id="section_184376435">
+        <div class="bg section-bg fill bg-fill  bg-loaded">
+
+
+
+
+
+        </div>
+
+
+
+        <div class="section-content relative">
+
+            <div class="row row-collapse row-divided" id="row-1241317765">
+
+                <div id="col-1960602282" class="col medium-4 small-12 large-4">
+                    <div class="col-inner text-left">
+
+
+                        <div class="accordion" rel="1">
+                            <div class="accordion-item"><a href="#" class="accordion-title plain"><button class="toggle"
+                                        aria-label="Toggle"><i class="icon-angle-down"></i></button><span>Quỳ trình xử
+                                        lý dịch vụ</span></a>
+                                <div class="accordion-inner">
+                                    <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Tiếp nhận/Yêu cầu kiểm tra </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Lập báo giá/Duyệt báo giá </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Lệnh sửa chữa </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Yêu cầu xuất hàng/Yêu cầu nhập hàng </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Nghiệm thu </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Quyết toán </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Xuất xưởng </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Chăm sóc khách hàng tự động </span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" target="_self"
+                            class="button secondary is-small box-shadow-2 box-shadow-2-hover lowercase"
+                            style="border-radius:99px;">
+                            <i class="icon-youtube"></i> <span>Hướng Dẫn</span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-1930976208" class="col medium-4 small-12 large-4">
+                    <div class="col-inner text-left">
+
+
+                        <div class="accordion" rel="1">
+                            <div class="accordion-item"><a href="#" class="accordion-title plain"><button class="toggle"
+                                        aria-label="Toggle"><i class="icon-angle-down"></i></button><span>Báo cáo xe ra
+                                        vào theo ngày</span></a>
+                                <div class="accordion-inner">
+                                    <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Báo cáo xe ra vào theo Cố vấn/Giám định viên/KTV </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Báo cáo xe ra vào theo Chi nhánh </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Báo cáo xe phải giao Deadline </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    BC xe tồn tháng trước, xuất xưởng, đang làm </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    BC xe hủy trong ngày/tháng/năm, nguyên nhân hủy </span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" target="_self"
+                            class="button secondary is-small box-shadow-2 box-shadow-2-hover lowercase"
+                            style="border-radius:99px;">
+                            <i class="icon-youtube"></i> <span>Hướng Dẫn</span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-1678905268" class="col medium-4 small-12 large-4">
+                    <div class="col-inner text-left">
+
+
+                        <div class="accordion" rel="1">
+                            <div class="accordion-item"><a href="#" class="accordion-title plain"><button class="toggle"
+                                        aria-label="Toggle"><i class="icon-angle-down"></i></button><span>Báo cáo quản
+                                        trị</span></a>
+                                <div class="accordion-inner">
+                                    <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    BC doanh thu/Lợi nhuận </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Công nợ khách hàng </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Công nợ bảo hiểm </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Công nợ phải trả (Nhà cung cấp) </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Hoa hồng sp/dv cho KTV/Giám định viên </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Báo cáo theo từng chi nhánh(Nếu có chi nhánh) </span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" target="_self"
+                            class="button secondary is-small box-shadow-2 box-shadow-2-hover lowercase"
+                            style="border-radius:99px;">
+                            <i class="icon-youtube"></i> <span>Hướng Dẫn</span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row" id="row-875294533">
+
+                <div id="col-1719229097" class="col medium-4 small-12 large-4 col-divided">
+                    <div class="col-inner text-left">
+
+
+                        <div class="accordion" rel="1">
+                            <div class="accordion-item"><a href="#" class="accordion-title plain"><button class="toggle"
+                                        aria-label="Toggle"><i class="icon-angle-down"></i></button><span>Xuất - Nhập -
+                                        Tồn kho</span></a>
+                                <div class="accordion-inner">
+                                    <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Nhập/Xuất hàng theo đơn </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Nhập/Xuất hàng theo báo giá/theo biển số xe </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Số lượng cảnh báo </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Phụ tùng tồn theo Hãng xe/dòng/năm </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Báo cáo SL tồn/giá trị tồn </span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" target="_self"
+                            class="button secondary is-small box-shadow-2 box-shadow-2-hover lowercase"
+                            style="border-radius:99px;">
+                            <span>Hướng Dẫn</span>
+                            <i class="icon-youtube"></i></a>
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-1748650796" class="col medium-4 small-12 large-4">
+                    <div class="col-inner text-left">
+
+
+                        <div class="accordion" rel="1">
+                            <div class="accordion-item"><a href="#" class="accordion-title plain"><button class="toggle"
+                                        aria-label="Toggle"><i class="icon-angle-down"></i></button><span>Chăm sóc khách
+                                        hàng</span></a>
+                                <div class="accordion-inner">
+                                    <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Tra cứu lịch sử sửa chữa/dịch vụ </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Nhắc hẹn bảo dưỡng định kỳ tự động khi đến hạn. Tự động gửi sms đến
+                                                    khách hàng khi đến hạn. </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Nhắc hẹn đăng kiểm. Tự động gửi SMS đến khách hàng khi xe đến hạn
+                                                    đăng kiểm. </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="ux-menu-link flex menu-item">
+                                            <a class="ux-menu-link__link flex" href="#">
+                                                <span class="ux-menu-link__text">
+                                                    Nhắc hẹn bảo hiểm DS, BH vật chất khi đến hạn. Tự gửi sms tự động.
+                                                </span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" target="_self"
+                            class="button secondary is-small box-shadow-2 box-shadow-2-hover lowercase"
+                            style="border-radius:99px;">
+                            <span>Hướng Dẫn</span>
+                            <i class="icon-youtube"></i></a>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <style>
+            #section_184376435 {
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+
+            #section_184376435 .ux-shape-divider--top svg {
+                height: 150px;
+                --divider-top-width: 100%;
+            }
+
+            #section_184376435 .ux-shape-divider--bottom svg {
+                height: 150px;
+                --divider-width: 100%;
+            }
+        </style>
+    </section>
+
+    <div class="container section-title-container">
+        <h3 class="section-title section-title-center"><b></b><span class="section-title-main"
+                style="font-size:99%;">TÍNH NĂNG PHỤ</span><b></b></h3>
+    </div>
+
+    <section class="section" id="section_526557430">
+        <div class="bg section-bg fill bg-fill  bg-loaded">
+
+
+
+
+
+        </div>
+
+
+
+        <div class="section-content relative">
+
+            <div class="row" id="row-998168238">
+
+                <div id="col-1389069348" class="col medium-3 small-6 large-3">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 85px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="770" height="400"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20770%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/09/QUAN-LY-DỊCH-VU-770x400.png"
+                                            class="lazy-load attachment-medium size-medium"
+                                            alt="Phần mềm quản lý dịch vụ gara ô tô" srcset=""
+                                            data-srcset="https://datlichbaoduong.com/wp-content/uploads/2020/09/QUAN-LY-DỊCH-VU-770x400.png 770w, https://datlichbaoduong.com/wp-content/uploads/2020/09/QUAN-LY-DỊCH-VU-510x265.png 510w, https://datlichbaoduong.com/wp-content/uploads/2020/09/QUAN-LY-DỊCH-VU-768x399.png 768w, https://datlichbaoduong.com/wp-content/uploads/2020/09/QUAN-LY-DỊCH-VU.png 1015w"
+                                            sizes="(max-width: 770px) 100vw, 770px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-2599650242" class="text">
+
+                                    <h3 style="text-align: center;"><span
+                                            style="color: #282828; font-family: 'times new roman', times, serif; font-size: 110%;"><b>QUẢN
+                                                LÝ DỊCH VỤ</b></span></h3>
+
+                                    <style>
+                                        #text-2599650242 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self" class="button white is-outline is-xxsmall lowercase"
+                                    style="border-radius:26px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-1549119150" class="col medium-3 small-6 large-3">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 37px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="324" height="400"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20324%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/bao-cao-tien-do-324x400.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" srcset=""
+                                            data-srcset="https://datlichbaoduong.com/wp-content/uploads/2020/07/bao-cao-tien-do-324x400.png 324w, https://datlichbaoduong.com/wp-content/uploads/2020/07/bao-cao-tien-do-647x800.png 647w, https://datlichbaoduong.com/wp-content/uploads/2020/07/bao-cao-tien-do.png 648w"
+                                            sizes="(max-width: 324px) 100vw, 324px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-2790144322" class="text">
+
+                                    <h3 style="text-align: center;"><span
+                                            style="color: #282828; font-size: 110%; font-family: 'times new roman', times, serif;"><a
+                                                style="color: #282828;" href="#"><strong>BÁO
+                                                    CÁO TIẾN ĐỘ</strong></a></span></h3>
+
+                                    <style>
+                                        #text-2790144322 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self"
+                                    class="button white is-outline is-xxsmall box-shadow-2 lowercase"
+                                    style="border-radius:99px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-175325325" class="col medium-3 small-6 large-3">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 66px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="86" height="61"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2086%2061%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/quan-ly-thu-chi.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-472227068" class="text">
+
+                                    <h3 style="text-align: center;">KẾ TOÁN THU CHI</h3>
+
+                                    <style>
+                                        #text-472227068 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self" class="button white is-outline is-xxsmall lowercase"
+                                    style="border-radius:26px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-37085524" class="col medium-3 small-6 large-3">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 44px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="78" height="84"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2078%2084%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/bao-cao-tai-chinh.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-3496581709" class="text">
+
+                                    <h3 style="text-align: center;">QUẢN LÝ TÀI SẢN</h3>
+
+                                    <style>
+                                        #text-3496581709 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self" class="button white is-outline is-xxsmall lowercase"
+                                    style="border-radius:26px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row" id="row-427732401">
+
+                <div id="col-983169734" class="col medium-4 small-12 large-4">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 37px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="73" height="75"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2073%2075%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/quan-ly-hang-hoa.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-2152197188" class="text">
+
+                                    <h3 style="text-align: center;"><span
+                                            style="color: #282828; font-family: 'times new roman', times, serif; font-size: 110%;"><b>QUẢN
+                                                LÝ KHO</b></span></h3>
+
+                                    <style>
+                                        #text-2152197188 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self"
+                                    class="button white is-outline is-xxsmall box-shadow-2 lowercase"
+                                    style="border-radius:99px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-716446477" class="col medium-4 small-12 large-4">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 37px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="409" height="400"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20409%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-BAN-HANG-409x400.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" srcset=""
+                                            data-srcset="https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-BAN-HANG-409x400.png 409w, https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-BAN-HANG-768x750.png 768w, https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-BAN-HANG-819x800.png 819w, https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-BAN-HANG-672x657.png 672w, https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-BAN-HANG.png 98w"
+                                            sizes="(max-width: 409px) 100vw, 409px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-2391133044" class="text">
+
+                                    <h3 style="text-align: center;"><span style="font-size: 110%;"><span
+                                                style="color: #282828; font-family: times new roman, times, serif;"><b>QUẢN
+                                                    LÝ BÁN HÀNG</b></span></span></h3>
+
+                                    <style>
+                                        #text-2391133044 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self"
+                                    class="button white is-outline is-xxsmall box-shadow-2 lowercase"
+                                    style="border-radius:99px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-672786394" class="col medium-4 small-12 large-4">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 37px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="358" height="400"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20358%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/CSKH-358x400.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" srcset=""
+                                            data-srcset="https://datlichbaoduong.com/wp-content/uploads/2020/07/CSKH-358x400.png 358w, https://datlichbaoduong.com/wp-content/uploads/2020/07/CSKH-510x570.png 510w, https://datlichbaoduong.com/wp-content/uploads/2020/07/CSKH-715x800.png 715w, https://datlichbaoduong.com/wp-content/uploads/2020/07/CSKH.png 753w"
+                                            sizes="(max-width: 358px) 100vw, 358px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-3216575985" class="text">
+
+                                    <h3 style="text-align: center;"><span style="font-size: 110%;"><span
+                                                style="color: #282828; font-family: times new roman, times, serif;"><b>CHĂM
+                                                    SÓC KHÁCH HÀNG</b></span></span></h3>
+
+                                    <style>
+                                        #text-3216575985 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self"
+                                    class="button white is-outline is-xxsmall box-shadow-2 lowercase"
+                                    style="border-radius:99px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row" id="row-2030810189">
+
+                <div id="col-2017409717" class="col medium-3 small-6 large-3">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 31px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="378" height="400"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20378%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/sms-NHAC-HEN-378x400.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" srcset=""
+                                            data-srcset="https://datlichbaoduong.com/wp-content/uploads/2020/07/sms-NHAC-HEN-378x400.png 378w, https://datlichbaoduong.com/wp-content/uploads/2020/07/sms-NHAC-HEN-510x540.png 510w, https://datlichbaoduong.com/wp-content/uploads/2020/07/sms-NHAC-HEN.png 752w"
+                                            sizes="(max-width: 378px) 100vw, 378px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-805292454" class="text">
+
+                                    <h3 style="text-align: center;"><span
+                                            style="font-family: 'times new roman', times, serif; font-size: 110%;">SMS
+                                            NHẮC HẸN BẢO DƯỠNG</span></h3>
+
+                                    <style>
+                                        #text-805292454 {
+                                            font-size: 0.75rem;
+                                            line-height: 1.15;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self" class="button white is-outline is-xxsmall lowercase"
+                                    style="border-radius:26px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-8504367" class="col medium-3 small-6 large-3">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 48px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="540" height="400"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20540%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-CHI-NHANH-540x400.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" srcset=""
+                                            data-srcset="https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-CHI-NHANH-540x400.png 540w, https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-CHI-NHANH-510x378.png 510w, https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-CHI-NHANH-768x569.png 768w, https://datlichbaoduong.com/wp-content/uploads/2020/07/QUAN-LY-CHI-NHANH.png 946w"
+                                            sizes="(max-width: 540px) 100vw, 540px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-3878046174" class="text">
+
+                                    <h3 style="text-align: center;"><span
+                                            style="color: #282828; font-family: 'times new roman', times, serif; font-size: 110%;"><b>QUẢN
+                                                LÝ CHI NHÁNH</b></span></h3>
+
+                                    <style>
+                                        #text-3878046174 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self" class="button white is-outline is-xxsmall lowercase"
+                                    style="border-radius:26px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-292089851" class="col medium-3 small-6 large-3">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 43px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="470" height="400"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20470%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/quan-tri-marketing.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" srcset=""
+                                            data-srcset="https://datlichbaoduong.com/wp-content/uploads/2020/07/quan-tri-marketing.png 881w, https://datlichbaoduong.com/wp-content/uploads/2020/07/quan-tri-marketing-510x434.png 510w"
+                                            sizes="(max-width: 470px) 100vw, 470px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-1191200828" class="text">
+
+                                    <h3 style="text-align: center;"><span
+                                            style="font-family: 'times new roman', times, serif; font-size: 110%;">QUẢN
+                                            TRỊ MARKETING</span></h3>
+
+                                    <style>
+                                        #text-1191200828 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self" class="button white is-outline is-xxsmall lowercase"
+                                    style="border-radius:26px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div id="col-145990250" class="col medium-3 small-6 large-3">
+                    <div class="col-inner">
+
+
+
+                        <div class="icon-box featured-box icon-box-center text-center"
+                            style="margin:0px 10px 0px 10px;">
+                            <div class="icon-box-img" style="width: 62px">
+                                <div class="icon">
+                                    <div class="icon-inner">
+                                        <img width="630" height="400"
+                                            src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20630%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                            data-src="https://datlichbaoduong.com/wp-content/uploads/2020/07/BAO-CAO-QUAN-TRI-630x400.png"
+                                            class="lazy-load attachment-medium size-medium" alt="" srcset=""
+                                            data-srcset="https://datlichbaoduong.com/wp-content/uploads/2020/07/BAO-CAO-QUAN-TRI-630x400.png 630w, https://datlichbaoduong.com/wp-content/uploads/2020/07/BAO-CAO-QUAN-TRI-768x488.png 768w, https://datlichbaoduong.com/wp-content/uploads/2020/07/BAO-CAO-QUAN-TRI-672x427.png 672w, https://datlichbaoduong.com/wp-content/uploads/2020/07/BAO-CAO-QUAN-TRI.png 97w"
+                                            sizes="(max-width: 630px) 100vw, 630px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="icon-box-text last-reset">
+
+                                <div id="text-2279629283" class="text">
+
+                                    <h3 style="text-align: center;"><span
+                                            style="font-family: 'times new roman', times, serif; font-size: 110%;">BÁO
+                                            CÁO QUẢN TRỊ</span></h3>
+
+                                    <style>
+                                        #text-2279629283 {
+                                            font-size: 0.75rem;
+                                            line-height: 0.75;
+                                            text-align: center;
+                                        }
+                                    </style>
+                                </div>
+
+                                <a href="#" target="_self"
+                                    class="button white is-outline is-xxsmall box-shadow-2 lowercase"
+                                    style="border-radius:99px;">
+                                    <span>Xem thêm</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <style>
+            #section_526557430 {
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+
+            #section_526557430 .ux-shape-divider--top svg {
+                height: 150px;
+                --divider-top-width: 100%;
+            }
+
+            #section_526557430 .ux-shape-divider--bottom svg {
+                height: 150px;
+                --divider-width: 100%;
+            }
+        </style>
+    </section>
+
+    <div class="container section-title-container hidden">
+        <h3 class="section-title section-title-bold"><b></b><span class="section-title-main" style="font-size:99%;"><i
+                    class="icon-menu"></i>Quỳ trình xử lý dịch vụ</span><b></b></h3>
+    </div>
+
+    <div class="container section-title-container hidden">
+        <h3 class="section-title section-title-bold"><b></b><span class="section-title-main" style="font-size:99%;"><i
+                    class="icon-menu"></i>Báo cáo xe ra vào theo ngày</span><b></b></h3>
+    </div>
+
+    <div class="container section-title-container hidden">
+        <h3 class="section-title section-title-bold"><b></b><span class="section-title-main" style="font-size:99%;"><i
+                    class="icon-menu"></i>Báo cáo quản trị</span><b></b></h3>
+    </div>
+
+    <div class="container section-title-container hidden">
+        <h3 class="section-title section-title-bold"><b></b><span class="section-title-main" style="font-size:99%;"><i
+                    class="icon-menu"></i>Xuất - Nhập - Tồn kho</span><b></b></h3>
+    </div>
+
+    <div class="container section-title-container hidden">
+        <h3 class="section-title section-title-bold"><b></b><span class="section-title-main" style="font-size:99%;"><i
+                    class="icon-menu"></i>Chăm sóc khách hàng</span><b></b></h3>
+    </div>
+
+
+
+    </div>
+    </div>
+    </div>
     </div>
 
     <!-- Add Vehicle Modal -->
-<div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addVehicleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addVehicleModalLabel">Add Vehicle</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="make" class="form-label">Make</label>
-                        <input type="text" class="form-control" id="make" name="make" required>
+    <div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addVehicleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addVehicleModalLabel">Add Vehicle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="mb-3">
-                        <label for="model" class="form-label">Model</label>
-                        <input type="text" class="form-control" id="model" name="model" required>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="make" class="form-label">Make</label>
+                            <input type="text" class="form-control" id="make" name="make" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="model" class="form-label">Model</label>
+                            <input type="text" class="form-control" id="model" name="model" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="year" class="form-label">Year</label>
+                            <input type="number" class="form-control" id="year" name="year" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="vin" class="form-label">VIN</label>
+                            <input type="text" class="form-control" id="vin" name="vin" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="color" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="color" name="color">
+                        </div>
+                        <div class="mb-3">
+                            <label for="license_plate" class="form-label">License Plate</label>
+                            <input type="text" class="form-control" id="license_plate" name="license_plate">
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="year" class="form-label">Year</label>
-                        <input type="number" class="form-control" id="year" name="year" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                    <div class="mb-3">
-                        <label for="vin" class="form-label">VIN</label>
-                        <input type="text" class="form-control" id="vin" name="vin" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="color" class="form-label">Color</label>
-                        <input type="text" class="form-control" id="color" name="color">
-                    </div>
-                    <div class="mb-3">
-                        <label for="license_plate" class="form-label">License Plate</label>
-                        <input type="text" class="form-control" id="license_plate" name="license_plate">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var wpcf7 = { "apiSettings": { "root": "https:\/\/datlichbaoduong.com\/wp-json\/contact-form-7\/v1", "namespace": "contact-form-7\/v1" }, "cached": "1" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.9'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var kk_star_ratings = { "action": "kk-star-ratings", "endpoint": "https:\/\/datlichbaoduong.com\/wp-admin\/admin-ajax.php", "nonce": "78b01580bb" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/kk-star-ratings/public/js/kk-star-ratings.js?ver=4.1.7'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/sticky-chat-widget/assets/front/js/script.min.js?ver=1.3'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome/inc/extensions/flatsome-instant-page/flatsome-instant-page.js?ver=1.2.1'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome/inc/extensions/flatsome-live-search/flatsome-live-search.js?ver=3.15.7'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=7.0.0'></script>
+    <script type='text/javascript'>
+        ('fetch' in window) || document.write('<script src="https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js?ver=3.0.0"></scr' + 'ipt>'); (document.contains) || document.write('<script src="https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js?ver=3.26.0-0"></scr' + 'ipt>'); (window.FormData && window.FormData.prototype.keys) || document.write('<script src="https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js?ver=3.0.12"></scr' + 'ipt>'); (Element.prototype.matches && Element.prototype.closest) || document.write('<script src="https://datlichbaoduong.com/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js?ver=2.0.2"></scr' + 'ipt>');
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-includes/js/hoverIntent.min.js?ver=1.8.1'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var flatsomeVars = { "theme": { "version": "3.15.7" }, "ajaxurl": "https:\/\/datlichbaoduong.com\/wp-admin\/admin-ajax.php", "rtl": "", "sticky_height": "70", "assets_url": "https:\/\/datlichbaoduong.com\/wp-content\/themes\/flatsome\/assets\/js\/", "lightbox": { "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>", "close_btn_inside": false }, "user": { "can_edit_pages": false }, "i18n": { "mainMenu": "Main Menu", "toggleButton": "Toggle" }, "options": { "cookie_notice_version": "1", "swatches_layout": false, "swatches_box_select_event": false, "swatches_box_behavior_selected": false, "swatches_box_update_urls": "1", "swatches_box_reset": false, "swatches_box_reset_extent": false, "swatches_box_reset_time": 300, "search_result_latency": "0" } };
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome/assets/js/flatsome.js?ver=2ba06bae7e21001b4413f16ac4e08981'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/themes/flatsome/inc/extensions/flatsome-lazy-load/flatsome-lazy-load.js?ver=3.15.7'></script>
+    <!--[if IE]>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/intersection-observer-polyfill@0.1.0/dist/IntersectionObserver.js?ver=0.1.0'></script>
+    <![endif]-->
+    <script type='text/javascript' src='https://datlichbaoduong.com/wp-includes/js/wp-embed.min.js?ver=5.2.21'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/ml-slider/assets/sliders/nivoslider/jquery.nivo.slider.pack.js?ver=3.90.0'></script>
+    <script type='text/javascript'>
+        var metaslider_31867 = function ($) {
+            $('#metaslider_31867').nivoSlider({
+                boxCols: 7,
+                boxRows: 6,
+                pauseTime: 3000,
+                effect: "slideInLeft",
+                controlNav: false,
+                directionNav: true,
+                pauseOnHover: false,
+                animSpeed: 600,
+                prevText: "Previous",
+                nextText: "Next",
+                slices: 15,
+                manualAdvance: false
+            });
+            $(document).trigger('metaslider/initialized', '#metaslider_31867');
+        };
+        var timer_metaslider_31867 = function () {
+            var slider = !window.jQuery ? window.setTimeout(timer_metaslider_31867, 100) : !jQuery.isReady ? window.setTimeout(timer_metaslider_31867, 1) : metaslider_31867(window.jQuery);
+        };
+        timer_metaslider_31867();
+    </script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var wpData = { "baseUrl": "https:\/\/datlichbaoduong.com" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/ml-slider/assets/metaslider/script.min.js?ver=3.90.0'></script>
+    <script type='text/javascript'
+        src='https://datlichbaoduong.com/wp-content/plugins/ml-slider/themes/bubble/v1.0.0/script.js?ver=1.0.0'></script>
+    <!--[if IE]>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.0.1/ie11CustomProperties.min.js?ver=4.0.1'></script>
+    <![endif]-->
+    <script>!function (s, u, b, i, z) { var o, t, r, y; s[i] || (s._sbzaccid = z, s[i] = function () { s[i].q.push(arguments) }, s[i].q = [], s[i]("setAccount", z), r = ["widget.subiz.net", "storage.googleapis" + (t = ".com"), "app.sbz.workers.dev", i + "a" + (o = function (k, t) { var n = t <= 6 ? 5 : o(k, t - 1) + o(k, t - 3); return k !== t ? n : n.toString(32) })(20, 20) + t, i + "b" + o(30, 30) + t, i + "c" + o(40, 40) + t], (y = function (k) { var t, n; s._subiz_init_2094850928430 || r[k] && (t = u.createElement(b), n = u.getElementsByTagName(b)[0], t.async = 1, t.src = "https://" + r[k] + "/sbz/app.js?accid=" + z, n.parentNode.insertBefore(t, n), setTimeout(y, 2e3, k + 1)) })(0)) }(window, document, "script", "subiz", "acrvqvpdepqvsxyevhhu")</script>
 </body>
+
 </html>

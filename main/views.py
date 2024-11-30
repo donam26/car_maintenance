@@ -375,11 +375,15 @@ def vehicle_add(request):
 @login_required
 def article_add(request):
     if request.method == 'POST':
-        form = MaintenanceArticleForm(request.POST)
-        if form.is_valid():
-            article = form.save(commit=False)
-            article.save()
-            return redirect('admin_maintenance_articles')  # Redirect after successful form submission
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        category = request.POST.get('category')
+        image = request.FILES.get('image')
+
+        # Lưu article mới với hình ảnh
+        article = MaintenanceArticle(title=title, content=content, image=image)
+        article.save()
+        return redirect('admin_maintenance_articles')  # Redirect after successful form submission
     else:
         form = MaintenanceArticleForm()
     return render(request, 'admin/article_add.html', {'form': form})
@@ -462,18 +466,17 @@ def appointment_add_user(request):
             appointment = form.save(commit=False)
             appointment.user = repair_request.user  # Gán user của khách hàng liên quan đến RepairRequest
             appointment.repair_request = repair_request  # Gán đối tượng RepairRequest
+            appointment.status = "Pending"  # Gán đối tượng RepairRequest
+            appointment.cost = form.cleaned_data['cost']  # Lấy cost từ dữ liệu form nhập vào
             appointment.save()  # Lưu đối tượng Appointment
-            messages.success(request, "Appointment created successfully!")
+
+            repair_request.delete()
             return redirect('admin_appointments')
         else:
             # In lỗi form để kiểm tra
             print(f"Form Errors: {form.errors}")
             messages.error(request, "There was an error in your form. Please correct it and try again.")
     return redirect('admin_appointments')
-
-
-
-
 
 def repair_requests(request):
     repair_requests = RepairRequest.objects.all()  # Fetch all repair requests
@@ -483,7 +486,7 @@ def appointments(request):
     appointments = Appointment.objects.select_related('repair_request', 'user').all()  # Query tất cả các cuộc hẹn
     return render(request, 'dashboard/appointments.html', {'appointments': appointments})
 
-def quotes(request):
+def quotes(request): 
     # Lấy tất cả các quotes kèm theo thông tin từ bảng RepairRequest qua quan hệ ForeignKey
     quotes = Quote.objects.select_related('repair_request').all()
     
@@ -588,12 +591,12 @@ def edit_appointment(request, appointment_id):
 
 # View for deleting an appointment
 
+
 def delete_appointment(request, appointment_id):
     appointment = get_object_or_404(Appointment, id=appointment_id)
     if request.method == 'POST':
         appointment.delete()
-        return redirect('appointments')
-
+        return redirect('admin_appointments')
 
 def edit_quote(request, quote_id):
     quote = get_object_or_404(Quote, id=quote_id)
@@ -617,13 +620,25 @@ def article_detail(request, pk):
     return render(request, 'dashboard/article_detail.html', {'article': article})
 
 def article_edit(request, pk):
+    # Lấy bài viết cần chỉnh sửa
     article = get_object_or_404(MaintenanceArticle, pk=pk)
+    
     if request.method == 'POST':
+        # Cập nhật các trường còn lại
         article.title = request.POST.get('title')
         article.content = request.POST.get('content')
         article.category = request.POST.get('category')
+        
+        # Kiểm tra xem có hình ảnh mới được upload không
+        if 'image' in request.FILES:
+            article.image = request.FILES['image']  # Cập nhật hình ảnh nếu có
+
+        # Lưu bài viết sau khi chỉnh sửa
         article.save()
+        
+        # Chuyển hướng đến trang danh sách bài viết
         return redirect('admin_maintenance_articles')
+    
     return render(request, 'dashboard/article_edit.html', {'article': article})
 
 def article_delete(request, pk):
